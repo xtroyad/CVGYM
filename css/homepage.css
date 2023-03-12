@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.menu {
+    width: 100vw;
+    height: 100px;
+    background-color: #323030;
+    /* NO CENTRA LOS ELEMENTOS */
+    display: inline-flex;
+    align-items: center;
+    
+}
+
+.logo{
+    
+    flex-grow: 0;
+}
+.logo img{
+    width: 145px;
+    height: 56px; 
+}
+
+.apartados{
+    flex-grow: 1;
+}
+
+.apartados li {
+    display: inline-block;
+    margin: 40px;
+} 
+
+.apartados ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+.apuntarse{
+   
+    background-color: #FF7200;
+}
+
+.inicio-sesion{
+    background-color: #FF7200;
+}
