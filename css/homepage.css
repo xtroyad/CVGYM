@@ -2,48 +2,83 @@
 body{
     margin: 0px;
     padding: 0px;
+    
+    background: url("../html/imagenes/fondo.jpg") no-repeat center center fixed;
+    background-size: cover;
 }
+/* ---------------------------------------------- */
+/* ---------------------------------------------- */
 .menu {
-    width: 100vw;
-    height: 100px;
+    position: relative;
+    /* Declaramos una altura y la anchura siempre ajustada al borde */
+    height: 90px;
+    box-sizing: border-box;
+
+    padding: 0 0 0 40px;
     background-color: #323030;
-    /* NO CENTRA LOS ELEMENTOS */
-    display: inline-flex;
-    align-items: center;
+    /* Los elementos se comportaran en filas horizontales y se completara */
+    display: flex;
+    flex-direction: row;
+}
+/* ---------------------------------------------- */
+/* ---------------------------------------------- */
+.logo{ 
+    /* No nos pasamos de los bordes a la hora de poner pading o margin */
+
+    box-sizing: border-box;
+ 
+    height: 100%;
+    padding:0 10px 0 0;
     
+
 }
 
-.logo{
-    
-    flex-grow: 0;
-}
 .logo img{
-    width: 145px;
-    height: 56px; 
+    
+    width: 90px;
+    height: 90%; 
+    
 }
+/* ---------------------------------------------- */
+/* ---------------------------------------------- */
+.sections{
+    
+    box-sizing: border-box;
 
-.apartados{
+    height: 100%;
+    padding: 0%;
+    margin: 0%;
+
     flex-grow: 1;
 }
-
-.apartados li {
+/* ---------------------------------------------- */
+/* ---------------------------------------------- */
+.sections li {
+    
+    /* Pone cada elemento en un bloque mas estrecho que permite poner a mas bloques en la misma linea */
     display: inline-block;
-    margin: 40px;
+    height: 100%;
+    padding: 30px 40px 30px 40px;
+    box-sizing: border-box;
+    
+    
 } 
 
-.apartados ul li a {
+.sections li a {
+    
+    /* Eliminamos la decoracion de enlace*/ 
     text-decoration: none;
+    padding: 20px 0 20px 0;
+    /* Cuando hacemos el cambio de color se hace con una transicion */
     color: white;
+    transition: color 0.3s ease;
+
     font-size: 20px;
-    font-weight: bold;
     font-family: 'Roboto', sans-serif;
 }
 
-.apuntarse{
-   
-    background-color: #FF7200;
+.sections li a:hover{
+    color: #FF7200;
 }
 
-.inicio-sesion{
-    background-color: #FF7200;
-}
+
