@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 body{
     margin: 0px;
     padding: 0px;
     
-    background: url("../html/imagenes/fondo.jpg") no-repeat center center fixed;
+    /* background: url("../html/imagenes/fondo.jpg") no-repeat center center fixed; */
     background-size: cover;
 }
-/* ---------------------------------------------- */
-/* ---------------------------------------------- */
+
 .menu {
     position: relative;
     /* Declaramos una altura y la anchura siempre ajustada al borde */
@@ -20,13 +21,11 @@ body{
     display: flex;
     flex-direction: row;
 }
-/* ---------------------------------------------- */
-/* ---------------------------------------------- */
 .logo{ 
     /* No nos pasamos de los bordes a la hora de poner pading o margin */
 
     box-sizing: border-box;
- 
+
     height: 100%;
     padding:0 10px 0 0;
     
@@ -39,8 +38,7 @@ body{
     height: 90%; 
     
 }
-/* ---------------------------------------------- */
-/* ---------------------------------------------- */
+
 .sections{
     
     box-sizing: border-box;
@@ -51,8 +49,7 @@ body{
 
     flex-grow: 1;
 }
-/* ---------------------------------------------- */
-/* ---------------------------------------------- */
+
 .sections li {
     
     /* Pone cada elemento en un bloque mas estrecho que permite poner a mas bloques en la misma linea */
@@ -79,6 +76,66 @@ body{
 
 .sections li a:hover{
     color: #FF7200;
+}
+
+/* ------------------------------------------------------------------------- */
+
+.highlights{
+    
+    height: 500px;
+    margin: 50px 20px 0 20px;
+
+}
+
+.highlights div{
+    display: inline-block;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0 10px 0 10px;
+    padding: 0px;
+}
+.highlights div img{
+    height: 100%;
+    /* Ponemos un sombreado a las imagenes */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+
+}
+.highlights-title{
+    font-size: 50px;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 600px 0 600px;
+
+}
+
+.final-text{
+    padding: 0 200px 0 200px;
+    margin: 100px 0 50px 0;
+    font-family: Arial, sans-serif;
+}
+
+/* ------------------------------------------------------------------------- */
+.social-networks{
+    
+    padding: 0 200px 0 200px;
+    margin: 100px 0 50px 0;
+    height: 90px;
+    
+    padding:0 50px 0 50px  ;
+    
+    
+}
+.social-networks div{
+    display: inline-block;
+    height: 100%;
+}
+
+.social-networks div img{
+    display: inline-block;
+    height: 100%;
+    padding: 0 120px 0 120px;
 }
 
 
