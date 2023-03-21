@@ -1,4 +1,4 @@
-package com.ssdd.CVGYM;
+package com.cvgym.CVGYM;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
