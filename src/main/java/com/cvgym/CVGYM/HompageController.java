@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HompageController {
 
-    @GetMapping("/homepage.html")
+    @GetMapping("/fd")
     public String homepage (){
         //model.addAttribute("name", nombre);
         return "homepage";
