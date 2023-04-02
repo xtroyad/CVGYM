@@ -1,153 +1,160 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
-body{
+
+body {
     margin: 0px;
     padding: 0px;
-    
-     
     background-size: cover;
 }
 
-.menu {
-    position: relative;
-    /* Declaramos una altura y la anchura siempre ajustada al borde */
-    height: 90px;
-    box-sizing: border-box;
-
-    padding: 0 0 0 40px;
-    background-color: #323030;
-    /* Los elementos se comportaran en filas horizontales y se completara */
+header {
     display: flex;
-    flex-direction: row;
+    background-color: #323030;
+    
 }
-.logo{ 
-    /* No nos pasamos de los bordes a la hora de poner pading o margin */
 
-    box-sizing: border-box;
+nav {
+    width: 100%;
+    display: flex;
+}
 
+.logo {
     height: 100%;
-    padding:0 10px 0 0;
-    
+    padding: 10px;
+}
+
+.logo img {
+
+    height: 70px;
 
 }
 
-.logo img{
-    
-    width: 90px;
-    height: 90%; 
-    
+
+nav .sections {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 100%;
+    margin: 0 60px 0 60px;
+    padding: 0;
+
 }
 
-.sections{
-    
-    box-sizing: border-box;
 
-    height: 100%;
-    padding: 0%;
-    margin: 0%;
 
-    flex-grow: 1;
+nav li {
+    margin: 0 20px;
+    display: flex;
+    align-items: center;
 }
 
-.sections li {
-    
-    /* Pone cada elemento en un bloque mas estrecho que permite poner a mas bloques en la misma linea */
-    display: inline-block;
-    height: 100%;
-    padding: 30px 40px 30px 40px;
-    box-sizing: border-box;
-    
-    
-} 
+nav a {
+    padding: 10px;
 
-.sections li a {
-    
-    /* Eliminamos la decoracion de enlace*/ 
-    text-decoration: none;
-    padding: 20px 0 20px 0;
-    /* Cuando hacemos el cambio de color se hace con una transicion */
     color: white;
-    transition: color 0.3s ease;
-
+    text-decoration: none;
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
+
+    transition: color 0.3s ease;
 }
 
-.sections li a:hover{
+.sections li a:hover {
     color: #FF7200;
 }
 
-/* ------------------------------------------------------------------------- */
 
-.highlights{
-    
-    height: 500px;
-    margin: 50px 20px 0 20px;
+/* Estilos para pantalla pequeña */
+@media screen and (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav {
+        margin-top: 20px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav li {
+        margin: 10px 0;
+    }
+}
+
+/* ------------------------------------------------------------------------- */
+.highlights-title {
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+
 
 }
 
-.highlights div{
-    position: relative;
+.highlights-title p {
+    margin: 20px;
+    font-family: 'Montserrat', sans-serif;
+
+}
+.highlights{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.highlights div {
+
     display: inline-block;
-    height: 100%;
-    box-sizing: border-box;
+
     margin: 0 10px 0 10px;
     padding: 0px;
 
     filter: blur(0);
-    
     transition: filter 0.2s ease-in-out;
 
+}
 
+.highlights div img {
+    height: 500px;
+    /* Ponemos un sombreado a las imagenes */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    /*Para aplicar un desenfoque*/
 }
 
 .highlights div :hover {
     filter: blur(5px);
 }
 
-.highlights div img{
-    height: 100%;
-    /* Ponemos un sombreado a las imagenes */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    /*Para aplicar un desenfoque*/
-}
 
 
-
-.highlights-title{
-    font-size: 50px;
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0 600px 0 600px;
-
-}
-
-.final-text{
+.final-text {
     padding: 0 200px 0 200px;
     margin: 100px 0 50px 0;
     font-family: Arial, sans-serif;
 }
 
 /* ------------------------------------------------------------------------- */
-.social-networks{
-    
+.social-networks {
+
     padding: 0 200px 0 200px;
     margin: 100px 0 50px 0;
     height: 50px;
-    
-    padding:0 50px 0 50px  ;
-    
-    
+
+    padding: 0 50px 0 50px;
+
+
 }
-.social-networks div{
+
+.social-networks div {
     position: relative;
     display: inline-block;
     height: 100%;
 }
 
-.social-networks div img{
+.social-networks div img {
     display: inline-block;
     height: 100%;
     padding: 0 143px 0 143px;
@@ -156,15 +163,15 @@ body{
 
 }
 
-.social-networks  div img:hover {
+.social-networks div img:hover {
 
     transform: scale(1.1);
-  
+
 
 }
 
 /*-----------------------------------------------------------*/
-.baner{
+.baner {
     position: relative;
     display: flex;
     background-color: #323030;
@@ -173,18 +180,18 @@ body{
 }
 
 
-.baner-text{
+.baner-text {
     box-sizing: border-box;
 
     position: absolute;
     top: 50%;
-    color:white;
-    padding:0 20px 0 20px;
-    
-    
+    color: white;
+    padding: 0 20px 0 20px;
+
+
 }
 
-.baner img{
+.baner img {
     position: absolute;
     right: 0;
     box-sizing: border-box;
