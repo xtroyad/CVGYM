@@ -6,15 +6,25 @@ body {
     margin: 0px;
     padding: 0px;
     background-size: cover;
+    overflow-x: hidden;
 }
 
 header {
     display: flex;
-    background-color: #323030;
+    /*background-color: #323030;*/
+    /**/
+    justify-content: space-between;
+    /* agregamos esta propiedad */
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    height: 100%;
     
 }
 
 nav {
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     display: flex;
 }
@@ -64,25 +74,72 @@ nav a {
     color: #FF7200;
 }
 
+.checkbtn{
+    font-size: 1.5em;
+    float:right;
+    line-height: 1em;
+    cursor: pointer;
+    display: none;
+}
+
+#check{
+    display: none;
+}
+
+/* Estilos para pantalla mediana */
+@media (max-width: 952px) {
+    nav a {
+        font-size: 16px;
+    }
+}
+
 
 /* Estilos para pantalla pequeña */
-@media screen and (max-width: 600px) {
-    header {
+@media screen and (max-width: 700px) {
+    .checkbtn{
+        display: block;
+    }
+    /*header {
         flex-direction: column;
         align-items: flex-start;
+    }*/
+
+    body{
+        overflow-x: hidden;
     }
 
     nav {
-        margin-top: 20px;
+        margin-top: 10px;
     }
 
-    nav ul {
-        flex-direction: column;
-        align-items: flex-start;
+    nav .sections {
+        position: fixed;
+        left: -160%;
+        width: 100%;
+        height: 100vh;
+        background: #696969;
+        text-align: center;
+        transition: all .5s;
+        top: 9em;
+        margin: 0 !important;
+        display: block;
     }
 
-    nav li {
-        margin: 10px 0;
+    nav ul li {
+        display: block;
+        margin: 40px 0;
+        line-height: 30px;
+        float: left;
+        width: 100%;
+    }
+
+    nav ul li a{
+        font-size: 20px;
+        height: 5em;
+    }
+
+    #check:checked ~ ul{
+        left: 0;
     }
 }
 
@@ -112,8 +169,8 @@ nav a {
     margin: 0 10px 0 10px;
     padding: 0px;
 
-    filter: blur(0);
-    transition: filter 0.2s ease-in-out;
+    /*filter: blur(0);
+    transition: filter 0.2s ease-in-out;*/
 
 }
 
