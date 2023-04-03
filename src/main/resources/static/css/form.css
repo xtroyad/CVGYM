@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #323030;
+
+}
+
+div h1{
+    padding: 10px;
+    margin: 10px;
+    background: white;
+}
+
+.contenedor {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100% !important;
+    background-color: #323030;
+    margin: 0 0 0 0;
+
+    /* establece un color de fondo oscuro */
+}
+
+.form {
+    width: 35%;
+    background-color: #fff;
+    margin: 30px;
+    padding: 20px;
+    max-height: 100%;
+    border-radius: 10px;
+
+}
+
+h1,
+h2 {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    text-align: center;
+}

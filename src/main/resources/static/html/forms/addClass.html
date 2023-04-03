@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/calendarPopUp.css">
+</head>
+
+<body>
+
+    <div>
+        <h1>Ajustes de Administrador</h1>
+    </div>
+
+    <div class="contenedor">
+
+        <div class="form">
+            <form>
+                <h2>Añadir clase a un gimnasio</h2>
+                <label>Gimnasio:</label>
+
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected>Abre para seleccionar</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+
+
+
+                <label>Clase:</label>
+
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected>Abre para seleccionar</option>
+
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+
+                </select>
+
+
+
+                <label >Hora:</label>
+                <input type="button" class="btn btn-light" value="Seleccionar hora" onclick="mostrarPopUp()">
+                <br><br>
+                <!--////////////////////////////////////////////////////////////////////////-->
+                <div id="popup">
+                    <table id="horario">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                                <th>Sábado</th>
+                                <th>Domingo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <script type="text/javascript" src="horario.js"></script>
+                        </tbody>
+                    </table>
+                
+                    <button onclick="ocultarPopUp()">Cerrar</button>
+                </div>
+                <!--////////////////////////////////////////////////////////////////////////-->
+                <label >Entrenador:</label>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+
+                    <option selected>Abre para seleccionar</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+
+                </select>
+
+                <br><br>
+
+
+                <input type="submit" class="btn btn-light" value="Confirmar">
+
+                <div id="calendar"></div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="prueba.js"></script>
+</body>
+
+</html>
