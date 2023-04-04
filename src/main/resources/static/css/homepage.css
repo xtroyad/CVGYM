@@ -1,25 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
-
+html, body{
+    height: 100%;
+}
 body {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     background-size: cover;
     overflow-x: hidden;
-    hight: 100%;
+
+    /*display: flex;*/
+    /*flex-direction: column;*/
+
+
 }
 
 header {
     display: flex;
-    /*background-color: #323030;*/
-    /**/
     justify-content: space-between;
-    /* agregamos esta propiedad */
     align-items: center;
     padding: 0;
-    background-color: #333;
-    height: 100%;
+    background-color: #323030;
+
     
 }
 
@@ -38,6 +41,10 @@ nav {
 .logo img {
 
     height: 70px;
+
+}
+
+main{
 
 }
 
@@ -168,7 +175,7 @@ nav a {
     display: inline-block;
 
     margin: 0 10px 0 10px;
-    padding: 0px;
+    padding: 0;
 
     /*filter: blur(0);
     transition: filter 0.2s ease-in-out;*/
@@ -186,42 +193,49 @@ nav a {
     filter: blur(5px);
 }
 
+.final-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+}
 
-
-.final-text {
-    padding: 0 200px 0 200px;
-    margin: 100px 0 50px 0;
+.text {
     font-family: Arial, sans-serif;
+    width: 70%;
 }
 
 /* ------------------------------------------------------------------------- */
 .social-networks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    padding: 0 200px 0 200px;
-    margin: 100px 0 50px 0;
+    width: 100%;
+    padding: 50px;
+
+}
+
+
+.networks{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+}
+.networks div {
+    height: 100%;
+    display: inline-block;
+}
+
+.networks div img {
+    display: inline-block;
     height: 50px;
-
-    padding: 0 50px 0 50px;
-
-
-}
-
-.social-networks div {
-    position: relative;
-    display: inline-block;
-    height: 100%;
-}
-
-.social-networks div img {
-    display: inline-block;
-    height: 100%;
-    padding: 0 143px 0 143px;
-
     transition: transform 0.2s ease-in-out;
 
 }
 
-.social-networks div img:hover {
+.networks div img:hover {
 
     transform: scale(1.1);
 
@@ -230,24 +244,29 @@ nav a {
 
 /*-----------------------------------------------------------*/
 footer{
-    position: absolute;
+
     bottom: 0;
     width: 100%;
+
 }
 
-.baner {
-    position: relative;
+.banner {
+
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     background-color: #323030;
-    height: 100px;
+    height: 100%;
     width: 100%;
+    padding: 20px;
 }
 
 
-.baner-text {
+.banner-text {
     box-sizing: border-box;
 
-    position: absolute;
+
     top: 50%;
     color: white;
     padding: 0 20px 0 20px;
@@ -255,10 +274,11 @@ footer{
 
 }
 
-.baner img {
-    position: absolute;
+.banner img {
+
     right: 0;
     box-sizing: border-box;
-    height: 100%;
-    padding: 20px;
+    height: 70px;
+
+    padding: 0;
 }

@@ -13,7 +13,6 @@ body {
 
 div h1{
     padding: 10px;
-    margin: 10px;
     background: white;
 }
 
@@ -23,7 +22,6 @@ div h1{
     justify-content: center;
     align-items: center;
 
-    height: 100%;
     width: 100% !important;
     background-color: #323030;
     margin: 0 0 0 0;
@@ -44,8 +42,10 @@ div h1{
 h1,
 h2 {
     font-family: 'Roboto', sans-serif;
+
 }
 
 h1 {
     text-align: center;
+    margin: 0;
 }
