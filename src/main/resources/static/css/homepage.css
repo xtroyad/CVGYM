@@ -13,7 +13,6 @@ body {
     /*display: flex;*/
     /*flex-direction: column;*/
 
-
 }
 
 header {
@@ -21,7 +20,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0;
-    background-color: #323030;
+    background-color: #212529;
 
     
 }
@@ -216,7 +215,6 @@ nav a {
 
 }
 
-
 .networks{
     display: flex;
     justify-content: space-between;
@@ -240,45 +238,4 @@ nav a {
     transform: scale(1.1);
 
 
-}
-
-/*-----------------------------------------------------------*/
-footer{
-
-    bottom: 0;
-    width: 100%;
-
-}
-
-.banner {
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background-color: #323030;
-    height: 100%;
-    width: 100%;
-    padding: 20px;
-}
-
-
-.banner-text {
-    box-sizing: border-box;
-
-
-    top: 50%;
-    color: white;
-    padding: 0 20px 0 20px;
-
-
-}
-
-.banner img {
-
-    right: 0;
-    box-sizing: border-box;
-    height: 70px;
-
-    padding: 0;
 }
