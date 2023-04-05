@@ -16,60 +16,59 @@
     <div class="contenedor">
 
         <div class="form">
-            <form>
+            <form action="/gym" method="post">
                 <h2>Crear nuevo gimnasio</h2>
-
 
                 <div class="row">
 
                     <div class="col">
                         <label class="form-label">Dirección</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="C. Tulipán">
+                        <input type="text" class="form-control" id="address" name="address" placeholder="C. Tulipán">
                     </div>
 
                     <div class="col">
                         <label class="form-label">Nº</label>
-                        <input type="text" class="form-control" id="inputNumberAddress" placeholder="20">
+                        <input type="text" class="form-control" id="number"  name="number" placeholder="20">
                     </div>
 
                     <div class="col">
-                        <label for="inputZip" class="form-label">Código Postal</label>
-                        <input type="text" class="form-control" id="inputZip" placeholder="28933">
+                        <label class="form-label">Código Postal</label>
+                        <input type="text" class="form-control" id="zip" name="zip" placeholder="28933">
                     </div>
 
                 </div>
-                
 
 
-                <label for="inputCity" class="form-label">Ciudad</label>
-                <input type="text" class="form-control" id="inputCity" placeholder="Ciudad">
+
+                <label class="form-label">Ciudad</label>
+                <input type="text" class="form-control" id="city" name="city" placeholder="Ciudad">
 
 
                 <label  class="form-label">Comunidad Autónoma</label>
-                <select id="inputCcaa" class="form-select">
+                <select id="ccaa" class="form-select">
                     <option selected>Choose...</option>
                     <option>...</option>
                 </select>
 
                 <label class="form-label">Número de contacto</label>
-                <input type="text" class="form-control" id="inputNumber" placeholder="914889393">
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="914889393">
 
 
                 <h3>Datos del gerente</h3>
                 <div class="row">
                     <div class="col">
                         <label>Nombre:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Nombre" aria-label="First name">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" aria-label="First name">
                     </div>
                     <div class="col">
                         <label>Apellidos:</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Apellidos" aria-label="Last name">
+                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Apellidos" aria-label="Last name">
                     </div>
                 </div>
 
                 <br><br>
-
-                <input type="submit" class="btn btn-light" value="Confirmar">
+                <button type="submit">Crear Usuario</button>
+<!--                <input type="submit" class="btn btn-light" value="Confirmar">-->
 
             </form>
 
