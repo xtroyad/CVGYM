@@ -47,9 +47,9 @@ public class GymRESTController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/course/", consumes = "application/json")
-    public Gym createCourse(@RequestBody Gym gym){
-        gymService.createGym(gym);
-        return gym;
+    public Course createCourse(@RequestBody Course course){
+        courseService.createCourse(course);
+        return course;
     }
 
     @GetMapping("/questions/")
