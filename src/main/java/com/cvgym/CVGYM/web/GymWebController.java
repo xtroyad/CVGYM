@@ -63,6 +63,11 @@ public class GymWebController {
         return "forms/contact";
     }
 
+    @GetMapping("/help/")
+    public String help() {
+        return "helpFAQs";
+    }
+
     //--------------------------------------------------------------------------------------------------------------------
     @GetMapping("/centers/")
 
