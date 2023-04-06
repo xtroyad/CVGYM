@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
+
+div h1{
+    padding: 10px;
+    background: white;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.contenedorHelp{
+    background-color: #323030;
+    padding: 7em 20em 7em 20em;
+}
+
+
+main{
+    background-color: #323030 !important;
+}
+
+@media screen and (max-width: 700px) {
+    .contenedorHelp{
+        /*display: none;*/
+        z-index: 0;
+    }
+    .sections{
+        z-index: 1;
+    }
+}
