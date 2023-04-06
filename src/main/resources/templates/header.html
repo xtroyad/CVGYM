@@ -3,8 +3,11 @@
 
 <head>
     <title>CvGYM</title>
+
+
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
 
+    <link rel="stylesheet" href="/css/homepage.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -27,7 +30,7 @@
 <body>
 <header>
     <nav>
-        <link rel="stylesheet" href="/css/homepage.css">
+
         <div class="logo">
             <img src="/img/logo.png" alt="Logo HTML">
         </div>
@@ -40,11 +43,11 @@
 
         <ul class="sections">
 
-            <li><a href="./">Inicio</a></li>
-            <li><a href="/center/">Centros</a></li>
-            <li><a href="javascript:void(0)" onclick="loadContent('html/forms/addCoach.html')">Galería</a></li>
-            <li><a href="javascript:void(0)" onclick="loadContent('html/contents/prices.html')">Precios</a></li>
-            <li><a href="javascript:void(0)" onclick="loadContent('html/forms/createGym.html')">Productos</a></li>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/centers/">Centros</a></li>
+            <li><a href="/">Galería</a></li>
+            <li><a href="/prices/">Precios</a></li>
+            <li><a href="/">Productos</a></li>
             <li><a href="javascript:void(0)" onclick="loadContent('html/forms/createClass.html')">Contacto</a></li>
             <li><a href="javascript:void(0)" onclick="loadContent('html/prueba.html')">Ayuda y FAQ's</a></li>
 
@@ -55,37 +58,12 @@
             </a>
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="loadContent('html/forms/createGym.html')">Crear gimnasio</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="loadContent('html/forms/createClass.html')">Crear clase</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="loadContent('html/forms/addCoach.html')">Añadir entrenador a un gimnasio</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="loadContent('html/forms/addClass.html')">Añadir clase a un gimnasio</a></li>
+                <li><a class="dropdown-item" href="/create-Gym/" >Crear gimnasio</a></li>
+                <li><a class="dropdown-item" href="/create-Class/" >Crear clase</a></li>
+                <li><a class="dropdown-item" href="/add-Coach/" >Añadir entrenador a un gimnasio</a></li>
+                <li><a class="dropdown-item" href="/add-class-to-gym/" >Añadir clase a un gimnasio</a></li>
             </ul>
         </div>
 
     </nav>
 </header>
-
-<main id="main" class="d-flex flex-column min-vh-100">
-
-</main>
-
-<footer class="bg-dark text-white py-3 mt-auto">
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-6 text-left">
-                <p></p>
-                <p>© 2023 CVGYM</p>
-            </div>
-            <div class="col-6 d-flex justify-content-end">
-                <img src="img/logobaner.png" alt="BANNER HTML" style="height: 50px;">
-            </div>
-        </div>
-    </div>
-</footer>
-
-
-<script src="js/main.js"></script>
-
-</body>
-
-</html>
