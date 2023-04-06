@@ -6,6 +6,8 @@ import com.cvgym.CVGYM.gym.Gym;
 import com.cvgym.CVGYM.gym.GymService;
 import com.cvgym.CVGYM.manager.Manager;
 import com.cvgym.CVGYM.manager.MangerService;
+import com.cvgym.CVGYM.question.Question;
+import com.cvgym.CVGYM.question.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,8 @@ public class GymWebController {
     private MangerService mangerService;
     @Autowired
     private CouseService couserService;
+    @Autowired
+    private QuestionService questionService;
 
 
     @GetMapping("/")
@@ -54,6 +58,11 @@ public class GymWebController {
         return "forms/addClass";
     }
 
+    @GetMapping("/create-question/")
+    public String createQuestion() {
+        return "forms/contact";
+    }
+
     //--------------------------------------------------------------------------------------------------------------------
     @GetMapping("/centers/")
 
@@ -78,6 +87,18 @@ public class GymWebController {
     public String newClass(Model model, Course course) {
         couserService.createCourse(course);
         return "redirect:/";
+    }
+
+    @PostMapping("/contact/")
+    public String newQuestion(Model model, Question question){
+        questionService.createQuestion(question);
+        return "redirect:/";
+    }
+
+    @GetMapping("/contacts/")
+    public String showQuestions(Model model){
+        model.addAttribute(questionService.getAllQuestions());
+        return null;
     }
 
 

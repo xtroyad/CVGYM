@@ -5,6 +5,8 @@ import com.cvgym.CVGYM.course.CouseService;
 import com.cvgym.CVGYM.gym.Gym;
 import com.cvgym.CVGYM.gym.GymService;
 import com.cvgym.CVGYM.manager.MangerService;
+import com.cvgym.CVGYM.question.Question;
+import com.cvgym.CVGYM.question.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,8 @@ public class GymRESTController {
     private GymService gymService;
     @Autowired
     private CouseService courseService;
+    @Autowired
+    private QuestionService questionService;
 
 
 
@@ -48,6 +52,17 @@ public class GymRESTController {
         return gym;
     }
 
+    @GetMapping("/questions/")
+    public Collection<Question> getAllQuestions(){
+        return questionService.getAllQuestions();
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(value = "/question/", consumes = "application/json")
+    public Question createCourse(@RequestBody Question question){
+        questionService.createQuestion(question);
+        return question;
+    }
 
 
 

@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<head>
+{{>header}}
     <link rel="stylesheet" href="/css/form.css">
-</head>
-<body>
     <div>
         <h1>Contacto</h1>
     </div>
@@ -10,26 +7,26 @@
     <div class="contenedor">
 
         <div class="form">
-            <form>
+            <form action="/contact/" method="post">
                 <h2>Enviar una solicitud</h2>
 
                 <label>Correo electrónico:</label>
-                <input type="text" class="form-control" placeholder="Correo">
+                <input type="text" id="mail" name="mail" class="form-control" placeholder="Correo">
                 <br><br>
 
                 <label>Asunto de la solicitud:</label>
-                <input type="text" class="form-control" placeholder="Asunto">
+                <input type="text" id="subject" name="subject" class="form-control" placeholder="Asunto">
                 <br><br>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Descripción:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Descripción aquí..."></textarea>
+                    <textarea id="description" name="description" class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Descripción aquí..."></textarea>
                 </div>
                 <br><br>
 
                 <div class="mb-3">
                     <label for="exampleFormControlSelect1" class="form-label">Tipo de Consulta:</label>
-                    <select class="form-select" id="exampleFormControlSelect1">
+                    <select id="typeQuestion" name="typeQuestion" class="form-select" id="exampleFormControlSelect1">
                         <option>Comentarios</option>
                         <option>Más información</option>
                         <option>Dudas sobre tu contrato</option>
@@ -44,6 +41,4 @@
         </div>
 
     </div>
-
-</body>
-</html>
+{{>footer}}
