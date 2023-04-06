@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
+
+div h1{
+    padding: 10px;
+    background: white;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contenedorPrices{
+    background-color: #323030;
+    padding: 50px 70px 50px 70px;
+}
+main{
+    background-color: #323030 !important;
+}
+
+@media screen and (max-width: 700px) {
+    .contenedorPrices{
+        /*display: none;*/
+        z-index: 0;
+    }
+    .sections{
+        z-index: 1;
+    }
+}
