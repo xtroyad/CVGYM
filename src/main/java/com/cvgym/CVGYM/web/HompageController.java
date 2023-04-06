@@ -18,19 +18,24 @@ public class HompageController {
     private GymService gymService;
     @Autowired
     private MangerService mangerService;
-    @GetMapping("/centers")
+
+    @GetMapping("/center/")
+
     public String showCenters(Model model){
+
         model.addAttribute("ccaa",gymService.getAllCCAA());
+
         model.addAttribute("gyms",gymService.getAll());
+        
 
         return "centers";
     }
 
-    @PostMapping("/gym")
+    @PostMapping("/gym/")
     public String newGym (Model model, Gym gym, @RequestParam("name") String name, @RequestParam("lastName") String lastName){
         gymService.createGym(gym);
         mangerService.createManager(new Manager(name, lastName), gym.getId());
-        return "/centers";
+        return "redirect:/center/";
     }
 
 
