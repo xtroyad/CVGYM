@@ -79,6 +79,15 @@ public class GymWebController {
         return "centers";
     }
 
+    @GetMapping("/center/")
+
+    public String showCenter(Model model) {
+
+        model.addAttribute("ccaa", gymService.getAllCCAA());
+        model.addAttribute("gyms", gymService.getAll());
+
+        return "center";
+    }
     @PostMapping("/gym/")
     public String newGym(Model model, Gym gym, @RequestParam("name") String name, @RequestParam("lastName") String lastName) {
         gymService.createGym(gym);
