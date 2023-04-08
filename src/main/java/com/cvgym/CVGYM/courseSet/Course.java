@@ -1,9 +1,8 @@
-package com.cvgym.CVGYM.course;
+package com.cvgym.CVGYM.courseSet;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.util.pattern.PathPattern;
 
 @Data
 @AllArgsConstructor

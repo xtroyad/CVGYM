@@ -1,6 +1,6 @@
 package com.cvgym.CVGYM.gym;
 
-import com.cvgym.CVGYM.course.Course;
+import com.cvgym.CVGYM.courseSet.Course;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +24,7 @@ public class Gym {
     //-----------------------------------//
     private Long managerId;
 
-    private Map<Long, Course> courses = new ConcurrentHashMap<>();
+
 
 
 }

@@ -1,11 +1,11 @@
 package com.cvgym.CVGYM.web;
 
-import com.cvgym.CVGYM.course.Course;
-import com.cvgym.CVGYM.course.CouseService;
+import com.cvgym.CVGYM.courseSet.Course;
+import com.cvgym.CVGYM.courseSet.CourseService;
 import com.cvgym.CVGYM.gym.Gym;
 import com.cvgym.CVGYM.gym.GymService;
 import com.cvgym.CVGYM.manager.Manager;
-import com.cvgym.CVGYM.manager.MangerService;
+import com.cvgym.CVGYM.manager.ManagerService;
 import com.cvgym.CVGYM.question.Question;
 import com.cvgym.CVGYM.question.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +21,9 @@ public class GymWebController {
     @Autowired
     private GymService gymService;
     @Autowired
-    private MangerService mangerService;
+    private ManagerService managerService;
     @Autowired
-    private CouseService couserService;
+    private CourseService couserService;
     @Autowired
     private QuestionService questionService;
 
@@ -82,7 +82,7 @@ public class GymWebController {
     @PostMapping("/gym/")
     public String newGym(Model model, Gym gym, @RequestParam("name") String name, @RequestParam("lastName") String lastName) {
         gymService.createGym(gym);
-        mangerService.createManager(new Manager(name, lastName), gym.getId());
+        managerService.createManager(new Manager(name, lastName), gym.getId());
         return "redirect:/centers/";
     }
 

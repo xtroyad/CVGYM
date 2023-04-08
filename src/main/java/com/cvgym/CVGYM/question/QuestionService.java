@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -19,7 +20,26 @@ public class QuestionService {
         return question;
     }
 
+    public Question putQuestion(Long id, Question question) {
+        return questions.put(id, question);
+
+    }
+
     public Collection<Question> getAllQuestions(){
         return questions.values();
+    }
+
+    public Optional<Question> findById(Long id) {
+
+        if (containsKey(id)) {
+            Question q = questions.get(id);
+            return Optional.of(q);
+        } else {
+            return Optional.empty();
+        }
+
+    }
+    public boolean containsKey(Long id) {
+        return questions.containsKey(id);
     }
 }
