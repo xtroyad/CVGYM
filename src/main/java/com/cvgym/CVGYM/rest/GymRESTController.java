@@ -177,18 +177,29 @@ public class GymRESTController {
         return course;
     }
 
-//    @PutMapping("/gyms")
-//    public ResponseEntity<HasACourse> updateElementByID(@RequestBody HasACourse course, @RequestParam Long id) {
-//        if (courseService.containsKey(id)) {
-//            courseService.putCourse(id, course);
-//            return new ResponseEntity<>(course, HttpStatus.OK);
-//        } else {
-//            // If HasACourse does not exist, return status 404 (Not Found)
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//
-//    }
-    /*Todo:FALTA EL DELELTE Y EL PUT*/
+    /*Todo:DELETE y PUT -> borrar de tabla intermedia*/
+
+    @DeleteMapping("/courses")
+    public ResponseEntity removeCourseByID(@RequestParam Long id){
+        // Delete course by id
+        if (courseService.deleteCourse(id)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            // If course does not exist, return status 404 (Not Found)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/courses")
+    public ResponseEntity<Course> updateCourseByID(@RequestBody Course course, @RequestParam Long id){
+        if (courseService.containsKey(id)) {
+            courseService.putCourse(id,course);
+            return new ResponseEntity<>(course, HttpStatus.OK);
+        } else {
+            // If gym does not exist, return status 404 (Not Found)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
     //------------------------------------------------------------------------------------------------------------------
     @GetMapping("/questions/")
     public Collection<Question> getAllQuestions() {
@@ -215,18 +226,28 @@ public class GymRESTController {
         return question;
     }
 
-//    @PutMapping("/gyms")
-//    public ResponseEntity<Question> updateElementByID(@RequestBody Question question, @RequestParam Long id) {
-//        if (questionService.containsKey(id)) {
-//            questionService.putQuestion(id, question);
-//            return new ResponseEntity<>(question, HttpStatus.OK);
-//        } else {
-//            // If Question does not exist, return status 404 (Not Found)
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//
-//    }
-    /*Todo:FALTA EL DELELTE Y EL PUT*/
+    @DeleteMapping("/questions")
+    public ResponseEntity removeQuestionByID(@RequestParam Long id){
+        // Delete course by id
+        if (questionService.deleteQuestion(id)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            // If course does not exist, return status 404 (Not Found)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/questions")
+    public ResponseEntity<Question> updateQuestionByID(@RequestBody Question question, @RequestParam Long id){
+        if (questionService.containsKey(id)) {
+            questionService.putQuestion(id,question);
+            return new ResponseEntity<>(question, HttpStatus.OK);
+        } else {
+            // If gym does not exist, return status 404 (Not Found)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     //------------------------------------------------------------------------------------------------------------------
     @GetMapping("/managers/")
     public Collection<Manager> getAllManager() {
@@ -249,12 +270,40 @@ public class GymRESTController {
 
     @PostMapping(value = "/manager")
     @ResponseStatus(HttpStatus.CREATED)
-    public Manager createManager(@RequestParam Long gymId,@RequestBody Manager manager) {
-        managerService.createManager(manager,gymId);
-        return manager;
+    public ResponseEntity <Manager> createManager(@RequestParam Long gymId,@RequestBody Manager manager) {
+        // Find gym by id
+        Optional<Gym> op = gymService.findById(gymId);
+        // If gym exists add manager, return it with status 200 (OK)
+        if (op.isPresent()) {
+            managerService.createManager(manager,gymId);
+            return new ResponseEntity<>(manager, HttpStatus.OK);
+        } else {
+            // If gym does not exist, return status 404 (Not Found)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-    /*Todo:FALTA EL DELELTE Y EL PUT*/
+    @DeleteMapping("/managers")
+    public ResponseEntity removeManagerByID(@RequestParam Long id){
+        // Delete manager by id
+        if (managerService.deleteManager(id)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            // If manager does not exist, return status 404 (Not Found)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/managers")
+    public ResponseEntity<Manager> updateManagerByID(@RequestBody Manager manager, @RequestParam Long id){
+        if (managerService.containsKey(id)) {
+            managerService.putManager(id,manager);
+            return new ResponseEntity<>(manager, HttpStatus.OK);
+        } else {
+            // If gym does not exist, return status 404 (Not Found)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     //------------------------------------------------------------------------------------------------------------------
     @GetMapping("/coaches/")
@@ -278,10 +327,40 @@ public class GymRESTController {
     }
     @PostMapping(value = "/coach")
     @ResponseStatus(HttpStatus.CREATED)
-    public Coach createCoach(@RequestParam Long gymId,@RequestBody Coach coach) {
-        return coachService.createCoach(coach,gymId);
+    public ResponseEntity <Coach> createCoach(@RequestParam Long gymId,@RequestBody Coach coach) {
+        // Find gym by id
+        Optional<Gym> op = gymService.findById(gymId);
+        // If gym exists add coach, return it with status 200 (OK)
+        if (op.isPresent()) {
+            coachService.createCoach(coach,gymId);
+            return new ResponseEntity<>(coach, HttpStatus.OK);
+        } else {
+            // If gym does not exist, return status 404 (Not Found)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
-    /*Todo:FALTA EL DELELTE Y EL PUT*/
+
+    @DeleteMapping("/coaches")
+    public ResponseEntity removeCoachByID(@RequestParam Long id){
+        // Delete coach by id
+        if (coachService.deleteCoach(id)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            // If course does not exist, return status 404 (Not Found)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/coaches")
+    public ResponseEntity<Coach> updateCoachByID(@RequestBody Coach coach, @RequestParam Long id){
+        if (coachService.containsKey(id)) {
+            coachService.putCoach(id,coach);
+            return new ResponseEntity<>(coach, HttpStatus.OK);
+        } else {
+            // If gym does not exist, return status 404 (Not Found)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 
 

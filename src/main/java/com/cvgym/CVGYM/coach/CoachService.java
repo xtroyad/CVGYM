@@ -37,4 +37,19 @@ public class CoachService {
         return coaches.containsKey(id);
     }
 
+    public Coach putCoach(Long id, Coach coach) {
+        coach.setId(id);
+        return coaches.put(id, coach);
+
+    }
+
+    public boolean deleteCoach(Long id) {
+        if (containsKey(id)) {
+            coaches.remove(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

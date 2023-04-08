@@ -21,6 +21,7 @@ public class QuestionService {
     }
 
     public Question putQuestion(Long id, Question question) {
+        question.setId(id);
         return questions.put(id, question);
 
     }
@@ -41,5 +42,14 @@ public class QuestionService {
     }
     public boolean containsKey(Long id) {
         return questions.containsKey(id);
+    }
+
+    public boolean deleteQuestion(Long id) {
+        if (containsKey(id)) {
+            questions.remove(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -1,6 +1,5 @@
 package com.cvgym.CVGYM.manager;
 
-import com.cvgym.CVGYM.gym.Gym;
 import com.cvgym.CVGYM.gym.GymService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,5 +45,19 @@ public class ManagerService {
         return managers.containsKey(id);
     }
 
+    public Manager putManager(Long id, Manager manager) {
+        manager.setId(id);
+        return managers.put(id, manager);
+
+    }
+
+    public boolean deleteManager(Long id) {
+        if (containsKey(id)) {
+            managers.remove(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

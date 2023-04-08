@@ -25,11 +25,6 @@ public class CourseService {
         return course;
     }
 
-//    public Course putCourse(Long id, Course course) {
-//        return courses.put(id, course);
-//
-//    }
-
     public Collection<Course> getAll(){
         return courses.values();
     }
@@ -42,6 +37,20 @@ public class CourseService {
         } else {
             return Optional.empty();
         }
+
+    }
+    public boolean deleteCourse(Long id) {
+        if (containsKey(id)) {
+            courses.remove(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Course putCourse(Long id, Course course) {
+        course.setId(id);
+        return courses.put(id, course);
 
     }
     public boolean containsKey(Long id) {
