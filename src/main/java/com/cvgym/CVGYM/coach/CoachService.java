@@ -53,11 +53,14 @@ public class CoachService {
     }
 
     public void deleteAllCoaches(Long gymId){
-        for (Coach coach: coaches.values()) {
-            if(coach.getGymId() == gymId){
-                coaches.remove(coach.getId());
+        if(!coaches.values().isEmpty()){
+            for (Coach coach: coaches.values()) {
+                if(coach.getGymId() == gymId){
+                    coaches.remove(coach.getId());
+                }
             }
         }
+
     }
 
 }

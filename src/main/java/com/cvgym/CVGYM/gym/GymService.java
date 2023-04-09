@@ -90,7 +90,6 @@ public class GymService {
 
     public Optional<Course> addCourse(Course course, Long gymId){
         if(gyms.containsKey(gymId)){
-            System.out.println("KLKKKKKKK");
             HasACourse aux = hasACourseService.createCourseInGym(gyms.get(gymId),course );
             return Optional.of(aux.getCourse());
         }else{

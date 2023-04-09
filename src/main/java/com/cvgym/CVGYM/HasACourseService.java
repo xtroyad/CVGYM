@@ -83,7 +83,31 @@ public class HasACourseService {
         return courseGymsMap.containsKey(id);
     }
 
+    public void deleteGym(Long gymId){
+        if(containsGymKey(gymId)){
+            gymCoursesMap.remove(gymId);
+            for (List<Gym> listGyms: courseGymsMap.values()) {
+                for (Gym gym : listGyms) {
+                    if(gym.getId() == gymId){
+                        listGyms.remove(gym.getId());
+                    }
+                }
+            }
+        }
+    }
 
+    public void deleteCourse(Long courseId){
+        if(containsCourseKey(courseId)){
+            courseGymsMap.remove(courseId);
+            for (List<Course> listCourses: gymCoursesMap.values()) {
+                for (Course course : listCourses) {
+                    if(course.getId() == courseId){
+                        listCourses.remove(course.getId());
+                    }
+                }
+            }
+        }
+    }
 
 
 }

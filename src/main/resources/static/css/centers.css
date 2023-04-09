@@ -1,6 +1,6 @@
 body {
-    /*display: flex;*/
-    /*justify-content: center;*/
+/display: flex;/
+/justify-content: center;/
 }
 
 .filtersContainer {
@@ -30,11 +30,12 @@ p {
     color: white;
     margin: 15px;
 }
-h2, h3{
+
+h2, h3 {
     font-family: 'Montserrat', sans-serif;
 }
 
-p{
+p {
     margin-top: 0;
     margin-bottom: 0 !important;
 }
@@ -93,9 +94,6 @@ li {
     padding: 0;
 
 
-
-
-
 }
 
 .gymImagen img {
@@ -111,6 +109,22 @@ li {
     padding: 20px;
     flex-grow: 1;
 
+}
 
+.buttonAndTittle {
+    display: flex;
+}
 
+.buttonAndTittle h2 {
+    flex-grow: 1;
+}
+
+.buttons {
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+}
+
+.buttons a{
+    margin: 5px;
 }

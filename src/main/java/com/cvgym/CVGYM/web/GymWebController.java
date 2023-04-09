@@ -9,12 +9,13 @@ import com.cvgym.CVGYM.manager.ManagerService;
 import com.cvgym.CVGYM.question.Question;
 import com.cvgym.CVGYM.question.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 @Controller
 public class GymWebController {
 
@@ -42,6 +43,28 @@ public class GymWebController {
     public String createGymPage() {
         return "forms/createGym";
     }
+
+    @GetMapping("/edit-Gym")
+    public String editGymPage(Model model,  @RequestParam Long gymId) {
+        Optional<Gym> op=gymService.findById(gymId);
+
+        if(op.isPresent()){
+            if(op.get().getManagerId()!=null){
+                Optional<Manager> op2=managerService.findById(op.get().getManagerId());
+                model.addAttribute("manager",op2.get());
+            }else{
+                model.addAttribute("manager",new Manager("",""));
+            }
+            model.addAttribute("gym",op.get());
+
+            return "forms/editGym";
+        }
+        else{
+            return "redirect:/error";
+        }
+
+    }
+
 
     @GetMapping("/create-Class/")
     public String createClassPage() {
@@ -88,12 +111,29 @@ public class GymWebController {
 
         return "center";
     }
+    //--------------------------------------------------------------------------------------------------------------------
+
+
+
     @PostMapping("/gym/")
     public String newGym(Model model, Gym gym, @RequestParam("name") String name, @RequestParam("lastName") String lastName) {
         gymService.createGym(gym);
         managerService.createManager(new Manager(name, lastName), gym.getId());
         return "redirect:/centers/";
     }
+
+    @PutMapping("/gym/{gymId}")
+    public String upDateGym(Gym gym, @PathVariable Long gymId, @RequestParam("name") String name, @RequestParam("lastName") String lastName) {
+        if (gymService.containsKey(gymId)) {
+            gymService.putGym(gymId, gym);
+            return "redirect:/centers/";
+        } else {
+            // If gym does not exist, return status 404 (Not Found)
+            return "redirect:/error";
+        }
+    }
+
+    //--------------------------------------------------------------------------------------------------------------------
 
 
 

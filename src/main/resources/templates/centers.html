@@ -1,56 +1,66 @@
-
 {{>header}}
 <main class="d-flex flex-column min-vh-100">
-<link rel="stylesheet" href="/css/centers.css">
-<div class="filtersContainer">
+    <link rel="stylesheet" href="/css/centers.css">
+    <div class="filtersContainer">
 
 
-    <div class="filters">
-        <h3>Filtros</h3>
+        <div class="filters">
+            <h3>Filtros</h3>
 
 
-        <label>Comunidad:</label>
-        <select id="filter" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-            <option value="todos">Todos</option>
-            <!--///////////////////////////////////////////////////////-->
-            {{#ccaa}}
-            <option value="{{.}}">{{.}}</option>
-            {{/ccaa}}
-            <!--///////////////////////////////////////////////////////-->
-        </select>
+            <label>Comunidad:</label>
+            <select id="filter" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option value="todos">Todos</option>
+                <!--///////////////////////////////////////////////////////-->
+                {{#ccaa}}
+                <option value="{{.}}">{{.}}</option>
+                {{/ccaa}}
+                <!--///////////////////////////////////////////////////////-->
+            </select>
 
+        </div>
+
+
+        <div class="gyms">
+
+
+            <h2 class="gym">GIMNASIOS</h2>
+            <ul id="list">
+                {{#gyms}}
+                <li class="{{ccaa}}">
+
+                    <div class="ele">
+                        <div class="gymImagen">
+
+                            <img src="/img/center/gymPhoto.jpg" alt="Imagen">
+                        </div>
+                        <div class="ciudad">
+                            <div class="buttonAndTittle">
+                                <h2>{{city}}</h2>
+                                <div class="buttons">
+
+                                    <a href="/edit-Gym?gymId={{id}}" class="btn btn-secondary">Editar</a>
+                                    <a href="#" class="btn btn-danger" data-id="{{id}}">Eliminar</a>
+
+                                </div>
+
+                            </div>
+
+                            <p>{{ccaa}}</p>
+                            <p>{{address}}, Nº{{number}}, {{zip}} - {{phoneNumber}}</p>
+                            <p>Más información..</p>
+
+                        </div>
+                    </div>
+                </li>
+
+                {{/gyms}}
+            </ul>
+        </div>
     </div>
 
+    <script src="/js/delete.js"></script>
 
-    <div class="gyms">
-
-
-        <h2 class="gym">GIMNASIOS</h2>
-        <ul id="list">
-            {{#gyms}}
-            <li class="{{ccaa}}">
-
-                <div class="ele">
-                    <div class="gymImagen">
-
-                        <img src="/img/center/gymPhoto.jpg" alt="Imagen">
-                    </div>
-                    <div class="ciudad">
-                        <h2>{{city}}</h2>
-                        <p>{{ccaa}}</p>
-                        <p>{{address}}, Nº{{number}}, {{zip}} - {{phoneNumber}}</p>
-
-                        <p>Más información..</p>
-                    </div>
-                </div>
-            </li>
-            {{/gyms}}
-
-        </ul>
-    </div>
-</div>
-
-
-<script src="/js/centers.js"></script>
+    <script src="/js/centers.js"></script>
 </main>
 {{>footer}}
