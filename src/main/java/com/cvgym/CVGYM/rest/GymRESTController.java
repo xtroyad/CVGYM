@@ -102,7 +102,11 @@ public class GymRESTController {
     @DeleteMapping("/gyms")
     public ResponseEntity<Gym> removeElementByID(@RequestParam Long id){
         // Delete gym by id
-        if (gymService.delete(id)) {
+        if (gymService.containsKey(id)) {
+            Optional<Gym> gym = gymService.findById(id);
+            managerService.deleteManager(gym.get().getManagerId());
+            coachService.deleteAllCoaches(id);
+            gymService.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             // If gym does not exist, return status 404 (Not Found)

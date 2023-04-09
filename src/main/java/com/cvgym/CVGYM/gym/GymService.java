@@ -3,6 +3,8 @@ package com.cvgym.CVGYM.gym;
 import com.cvgym.CVGYM.HasACourse;
 import com.cvgym.CVGYM.HasACourseService;
 import com.cvgym.CVGYM.courseSet.Course;
+import com.cvgym.CVGYM.manager.Manager;
+import com.cvgym.CVGYM.manager.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -97,7 +99,10 @@ public class GymService {
 
     }
 
-
+    public void updateManagerId(Long gymId){
+        Optional<Gym> gym = findById(gymId);
+        gym.get().setManagerId(0L);
+    }
 
 
 }

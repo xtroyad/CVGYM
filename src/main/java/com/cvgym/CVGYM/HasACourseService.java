@@ -40,7 +40,6 @@ public class HasACourseService {
             }
 
         }
-        System.out.println("MAMAWEBO");
 
         if(course!=null){
             if(courseGymsMap.containsKey(course.getId())){

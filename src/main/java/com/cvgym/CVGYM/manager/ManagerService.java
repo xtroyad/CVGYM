@@ -53,6 +53,8 @@ public class ManagerService {
 
     public boolean deleteManager(Long id) {
         if (containsKey(id)) {
+            Optional<Manager> manager = findById(id);
+            gymService.updateManagerId(manager.get().getGymId());
             managers.remove(id);
             return true;
         } else {
