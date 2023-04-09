@@ -77,7 +77,9 @@ public class GymWebController {
     }
 
     @GetMapping("/add-class-to-gym/")
-    public String addClassToGymPage() {
+    public String addClassToGymPage(Model model) {
+        model.addAttribute("course", couserService.getAll());
+        model.addAttribute("gym",gymService.getAll());
         return "forms/addClass";
     }
 
