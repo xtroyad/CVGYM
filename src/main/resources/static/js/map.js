@@ -1,58 +1,41 @@
 let marker, map;
 
 function initMap() {
+    // Get the address from the HTML and set the default position to Madrid
+    const address = document.querySelector('.ubication').textContent;
+    const defaultPosition = {
+        lat: 40.4165,
+        lng: -3.7026
+    };
 
-    const direccion = document.querySelector('.ubicacion').textContent;
-    const posicion = {
-        lat: -25.363,
-        lng: 131.044
-    }
-
+    // Create a new Google Map and Marker object with the default position
     map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
-        center: posicion
-    })
+        zoom: 10, // Set the default zoom level to 10
+        center: defaultPosition
+    });
 
     marker = new google.maps.Marker({
-        position: posicion,
+        position: defaultPosition,
         map,
-        title: "Posición Inicial"
-    })
+        title: "Initial Position"
+    });
 
-    geocodeAddress(direccion)
+    // Geocode the address to get the latitude and longitude of the location
+    geocodeAddress(address);
 }
 
-function geocodeAddress(direccion) {
+function geocodeAddress(address) {
     const geocoder = new google.maps.Geocoder();
 
-    geocoder.geocode({ address: direccion }, function(results, status) {
+    geocoder.geocode({ address: address }, function(results, status) {
         if (status === "OK") {
-            // Centrar el mapa en la ubicación de la dirección
+            // If the geocoding was successful, set the map center and marker position to the new location
             const nuevaPos = results[0].geometry.location;
             map.setCenter(nuevaPos);
             marker.setPosition(nuevaPos);
+            map.setZoom(12); // Set the zoom level to 10
         } else {
-            console.log("Geocodificación fallida: " + status);
+            console.log("Geocoding failed: " + status);
         }
     });
-}
-
-
-
-
-
-
-
-function centraMapa(position) {
-    const nuevaPos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-    }
-    marker.setPosition(nuevaPos)
-    map.setCenter(nuevaPos)
-}
-
-function onError(error) {
-    console.log("Se ha producido un error y lo hemos gestionado")
-    console.error(error)
 }
