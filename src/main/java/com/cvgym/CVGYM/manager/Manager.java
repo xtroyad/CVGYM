@@ -13,8 +13,14 @@ public class Manager {
     private String lastName;
     private Long gymId;
 
+    public Manager(String n, String ln, Long i){
+        name= n;
+        id=i;
+        lastName = ln;
+    }
     public Manager(String n, String ln){
         name= n;
+
         lastName = ln;
     }
 

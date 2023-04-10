@@ -20,7 +20,6 @@ public class CourseService {
     public Course createCourse(Course course){
         long tem = id.incrementAndGet();
         course.setId(tem);
-        hasACourseService.createCourseInGym(null,course);
         courses.put(tem, course);
         return course;
     }

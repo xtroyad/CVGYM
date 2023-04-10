@@ -24,7 +24,6 @@ public class GymService {
     public Gym createGym(Gym gym) {
         long tem = id.incrementAndGet();
         gym.setId(tem);
-        hasACourseService.createCourseInGym(gym,null);
         gyms.put(tem, gym);
         return gym;
     }
@@ -85,7 +84,13 @@ public class GymService {
     }
 
     public Optional<List<Course>> getCourses(Long gymId) {
-        return hasACourseService.getCourses(gymId);
+        Optional<Gym> op = Optional.of(gyms.get(gymId));
+        if(op.isPresent()){
+            return hasACourseService.getCourses(gymId);
+        }else{
+            return Optional.empty();
+        }
+
     }
 
     public Optional<Course> addCourse(Course course, Long gymId){

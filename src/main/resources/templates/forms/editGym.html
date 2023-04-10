@@ -10,53 +10,53 @@
 
         <div data-id="{{gym.id}}" class="form">
 
-                <h2>Crear nuevo gimnasio</h2>
+            <h2>Crear nuevo gimnasio</h2>
 
-                <div class="row">
+            <div class="row">
 
-                    <div class="col">
-                        <label class="form-label">Dirección</label>
-                        <input type="text" class="form-control" id="address" name="address" placeholder="C. Tulipán" value="{{gym.address}}">
-                    </div>
-
-                    <div class="col">
-                        <label class="form-label">Nº</label>
-                        <input type="text" class="form-control" id="number"  name="number" placeholder="20" value="{{gym.number}}">
-                    </div>
-
-                    <div class="col">
-                        <label class="form-label">Código Postal</label>
-                        <input type="text" class="form-control" id="zip" name="zip" placeholder="28933" value="{{gym.zip}}">
-                    </div>
-
+                <div class="col">
+                    <label class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="C. Tulipán" value="{{gym.address}}">
                 </div>
 
-                <label  class="form-label">Comunidad Autónoma</label>
-                <select id="ccaa" name="ccaa" value="{{gym.ccaa}}" class="form-select" >
-                    <option>{{gym.ccaa}}</option>
-                </select>
-                <script src="/js/ccaa.js" charset="UTF-8"></script>
-                <label class="form-label">Ciudad</label>
-                <input type="text" class="form-control" id="city" name="city" placeholder="Ciudad"  value="{{gym.city}}">
-
-
-                <label class="form-label">Número de contacto</label>
-                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="914889393"  value="{{gym.phoneNumber}}">
-
-
-                <h3>Datos del gerente</h3>
-                <div class="row">
-                    <div class="col managerClass" data-id="{{gym.managerId}}">
-                        <label>Nombre:</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" aria-label="First name" value="{{manager.name}}">
-                    </div>
-                    <div class="col">
-                        <label>Apellidos:</label>
-                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Apellidos" aria-label="Last name" value="{{manager.lastName}}">
-                    </div>
+                <div class="col">
+                    <label class="form-label">Nº</label>
+                    <input type="text" class="form-control" id="number"  name="number" placeholder="20" value="{{gym.number}}">
                 </div>
 
-                <br><br>
+                <div class="col">
+                    <label class="form-label">Código Postal</label>
+                    <input type="text" class="form-control" id="zip" name="zip" placeholder="28933" value="{{gym.zip}}">
+                </div>
+
+            </div>
+
+            <label  class="form-label">Comunidad Autónoma</label>
+            <select id="ccaa" name="ccaa" value="{{gym.ccaa}}" class="form-select" >
+                <option>{{gym.ccaa}}</option>
+            </select>
+            <script src="/js/ccaa.js" charset="UTF-8"></script>
+            <label class="form-label">Ciudad</label>
+            <input type="text" class="form-control" id="city" name="city" placeholder="Ciudad"  value="{{gym.city}}">
+
+
+            <label class="form-label">Número de contacto</label>
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="914889393"  value="{{gym.phoneNumber}}">
+
+
+            <h3>Datos del gerente</h3>
+            <div class="row">
+                <div class="col managerClass" data-id="{{manager.id}}">
+                    <label>Nombre:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" aria-label="First name" value="{{manager.name}}">
+                </div>
+                <div class="col">
+                    <label>Apellidos:</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Apellidos" aria-label="Last name" value="{{manager.lastName}}">
+                </div>
+            </div>
+
+            <br><br>
 
             <a id="myButton"   href="#" class="btn btn-secondary">Confirmar</a>
 

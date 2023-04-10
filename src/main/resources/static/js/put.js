@@ -40,8 +40,16 @@ myButton.addEventListener('click', (event) => {
             }
             const managerClass = document.querySelector('.managerClass');
             const managerId =managerClass.getAttribute('data-id');
-            return fetch(`/api/manager?managerId=${managerId}`, {
-                method: 'PUT',
+
+            let managerMethod = 'PUT';
+            let managerEndpoint = `/api/manager?managerId=${managerId}`;
+            if (managerId === '0') {
+                managerMethod = 'POST';
+                managerEndpoint =  `/api/manager?gymId=${gymId}`;
+            }
+
+            return fetch(managerEndpoint, {
+                method: managerMethod,
                 headers: {
                     'Content-Type': 'application/json'
                 },

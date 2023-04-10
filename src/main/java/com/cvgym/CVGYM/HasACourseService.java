@@ -19,58 +19,46 @@ public class HasACourseService {
     private Map<Long, List<Gym>> courseGymsMap = new ConcurrentHashMap<>();
 
 
-
     public HasACourse createCourseInGym(Gym gym, Course course) {
 
-        if(gym!=null) {
-
-            if(gymCoursesMap.containsKey(gym.getId())){
-
-                List<Course> courseList = gymCoursesMap.get(gym.getId());
-                courseList.add(course);
-                gymCoursesMap.put(gym.getId(), courseList);
-            }else{
-
-                List<Course> auxCourse= new ArrayList<>();
-                if(course!=null){
-                    auxCourse.add(course);
-                }
-
-                gymCoursesMap.put(gym.getId(),auxCourse);
-            }
-
+        List<Course> courseList;
+        if (gymCoursesMap.containsKey(gym.getId())) {
+            courseList = gymCoursesMap.get(gym.getId());
+        } else {
+            courseList = new ArrayList<>();
         }
 
-        if(course!=null){
-            if(courseGymsMap.containsKey(course.getId())){
-                List<Gym> gymList = courseGymsMap.get(course.getId());
-                gymList.add(gym);
-                courseGymsMap.put(course.getId(), gymList );
-            }else{
-                List<Gym> auxGym= new  ArrayList<>();
-                auxGym.add(gym);
-                courseGymsMap.put(course.getId(),auxGym);
-            }
+        courseList.add(course);
+        gymCoursesMap.put(gym.getId(), courseList);
+
+        List<Gym> gymList;
+        if (courseGymsMap.containsKey(course.getId())) {
+            gymList = courseGymsMap.get(course.getId());
+        } else {
+            gymList = new ArrayList<>();
         }
+        gymList.add(gym);
+        courseGymsMap.put(course.getId(), gymList);
 
 
-        return new HasACourse(gym,course);
+        return new HasACourse(gym, course);
 
     }
 
-    public Optional<List<Course>> getCourses(Long gymId){
+    public Optional<List<Course>> getCourses(Long gymId) {
 
-        if(containsGymKey(gymId)){
-            return Optional.of(gymCoursesMap.get(gymId)) ;
-        }else {
-            return Optional.empty();
+        if (containsGymKey(gymId)) {
+            return Optional.of(gymCoursesMap.get(gymId));
+        } else {
+            return Optional.of((new ArrayList<>()));
+
         }
     }
 
-    public Optional<List<Gym>> getGyms(Long courseId){
-        if(containsCourseKey(courseId)){
-            return Optional.of(courseGymsMap.get(courseId)) ;
-        }else {
+    public Optional<List<Gym>> getGyms(Long courseId) {
+        if (containsCourseKey(courseId)) {
+            return Optional.of(courseGymsMap.get(courseId));
+        } else {
             return Optional.empty();
         }
     }
@@ -79,29 +67,30 @@ public class HasACourseService {
     public boolean containsGymKey(Long id) {
         return gymCoursesMap.containsKey(id);
     }
+
     public boolean containsCourseKey(Long id) {
         return courseGymsMap.containsKey(id);
     }
 
-    public void deleteGym(Long gymId){
-        if(containsGymKey(gymId)){
+    public void deleteGym(Long gymId) {
+        if (containsGymKey(gymId)) {
             gymCoursesMap.remove(gymId);
-            for (List<Gym> listGyms: courseGymsMap.values()) {
+            for (List<Gym> listGyms : courseGymsMap.values()) {
                 for (Gym gym : listGyms) {
-                    if(gym.getId() == gymId){
-                        listGyms.remove(gym.getId());
+                    if (gym.getId().equals(gymId)) {
+                        listGyms.remove(gym);
                     }
                 }
             }
         }
     }
 
-    public void deleteCourse(Long courseId){
-        if(containsCourseKey(courseId)){
+    public void deleteCourse(Long courseId) {
+        if (containsCourseKey(courseId)) {
             courseGymsMap.remove(courseId);
-            for (List<Course> listCourses: gymCoursesMap.values()) {
+            for (List<Course> listCourses : gymCoursesMap.values()) {
                 for (Course course : listCourses) {
-                    if(course.getId() == courseId){
+                    if (course.getId() == courseId) {
                         listCourses.remove(course.getId());
                     }
                 }

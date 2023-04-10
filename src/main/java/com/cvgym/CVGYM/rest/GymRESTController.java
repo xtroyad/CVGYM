@@ -106,10 +106,14 @@ public class GymRESTController {
         // Delete gym by id
         if (gymService.containsKey(gymId)) {
             Optional<Gym> gym = gymService.findById(gymId);
-            if(gym.get().getManagerId() != null){
+            if(gym.get().getManagerId() != null && gym.get().getManagerId() !=0){
                 managerService.deleteManager(gym.get().getManagerId());
             }
+            System.out.println(gym.get().getId());
+            System.out.println(gym.get().getNumber());
+
             coachService.deleteAllCoaches(gymId);
+
             hasACourseService.deleteGym(gymId);
             gymService.delete(gymId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -264,7 +268,7 @@ public class GymRESTController {
     //------------------------------------------------------------------------------------------------------------------
     @GetMapping("/managers/")
     public Collection<Manager> getAllManager() {
-    return managerService.getAll();
+        return managerService.getAll();
     }
     @GetMapping("/manager")
     public ResponseEntity<Manager> getManager(@RequestParam Long managerId) {
@@ -308,6 +312,7 @@ public class GymRESTController {
 
     @PutMapping("/manager")
     public ResponseEntity<Manager> updateManagerByID(@RequestBody Manager manager, @RequestParam Long managerId){
+
         System.out.println(managerId);
         if (managerService.containsKey(managerId)) {
             Long gymId = managerService.findById(managerId).get().getGymId();

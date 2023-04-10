@@ -49,12 +49,15 @@ public class GymWebController {
         Optional<Gym> op=gymService.findById(gymId);
 
         if(op.isPresent()){
-            if(op.get().getManagerId()!=null){
+
+            if(op.get().getManagerId()!=null && op.get().getManagerId()!=0L){
+
                 Optional<Manager> op2=managerService.findById(op.get().getManagerId());
                 model.addAttribute("manager",op2.get());
             }else{
-                model.addAttribute("manager",new Manager("",""));
+                model.addAttribute("manager",new Manager(" "," ",0l));
             }
+            System.out.println("pasamos");
             model.addAttribute("gym",op.get());
 
             return "forms/editGym";
