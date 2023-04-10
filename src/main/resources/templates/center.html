@@ -51,15 +51,24 @@
             <div class="ele">
 
                 <div class="CourseImagen">
-
                     <img src="/img/center/zumba.jpg" alt="Imagen">
-
                 </div>
 
+
                 <div class="course">
-                    <h2>{{name}}</h2>
+
+                    <div class="buttonAndTittle">
+                        <h2>{{name}}</h2>
+                        <div class="buttons">
+
+                            <a href="#" class="btn btn-danger" data-id="{{id}}">Eliminar</a>
+
+                        </div>
+                    </div>
+
                     <p>Intensidad: Nivel {{intensity}}</p>
                     <p>Descripción: {{description}} </p>
+
                 </div>
 
             </div>
@@ -72,6 +81,7 @@
 <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPFQiBLzTqRwHBGJJrrxb6oI1tUwRirD0&callback=initMap&v=weekly"
         async></script>
+<script src="/js/delete/deleteClass.js"></script>
 <script src="/js/map.js"></script>
 
 {{>footer}}

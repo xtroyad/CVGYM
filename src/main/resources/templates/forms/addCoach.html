@@ -8,37 +8,38 @@
 <div class="contenedor">
 
     <div class="form">
-        <form  method="post" action="/course/" >
+
             <h2>Añadir entrenador a un gimnasio</h2>
 
             <div class="row">
                 <div class="col">
                     <label>Nombre:</label>
-                    <input type="text" class="form-control" placeholder="Nombre" aria-label="First name">
+                    <input id="name" type="text" class="form-control" placeholder="Nombre" aria-label="First name" required>
                 </div>
                 <div class="col">
                     <label>Apellidos:</label>
-                    <input type="text" class="form-control" placeholder="Apellidos" aria-label="Last name">
+                    <input id="lastName" type="text" class="form-control" placeholder="Apellidos" aria-label="Last name" required>
                 </div>
             </div>
 
             <br><br>
 
             <label>Gimnasio:</label>
-            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <select id="selectGym"  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
                 {{#gym}}
-                <option >ID: {{id}} | {{address}} ({{city}})</option>
+                <option value="{{id}}" >ID: {{id}} | {{address}} ({{city}})</option>
                 {{/gym}}
             </select>
 
             <br><br>
 
-            <input type="submit" class="btn btn-light" value="Confirmar">
+            <input type="submit" class="btn btn-light" value="Confirmar" required>
 
-        </form>
+
 
     </div>
 
 </div>
+    <script src="/js/post/postCoach.js"></script>
 </main>
 {{>footer}}

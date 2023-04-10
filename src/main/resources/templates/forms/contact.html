@@ -12,27 +12,27 @@
                 <h2>Enviar una solicitud</h2>
 
                 <label>Correo electrónico:</label>
-                <input type="text" id="mail" name="mail" class="form-control" placeholder="Correo">
+                <input type="text" id="mail" name="mail" class="form-control" placeholder="Correo" required>
                 <br><br>
 
                 <label>Asunto de la solicitud:</label>
-                <input type="text" id="subject" name="subject" class="form-control" placeholder="Asunto">
+                <input type="text" id="subject" name="subject" class="form-control" placeholder="Asunto" required>
                 <br><br>
 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Descripción:</label>
-                    <textarea id="description" name="description" class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Descripción aquí..."></textarea>
+                    <textarea id="description" name="description" class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Descripción aquí..." required></textarea>
                 </div>
                 <br><br>
 
                 <div class="mb-3">
                     <label for="exampleFormControlSelect1" class="form-label">Tipo de Consulta:</label>
-                    <select id="typeQuestion" name="typeQuestion" class="form-select" id="exampleFormControlSelect1">
+                    <select id="typeQuestion" name="typeQuestion" class="form-select" id="exampleFormControlSelect1" required>
 
                     </select>
                 </div>
 
-                <input type="submit" class="btn btn-light" value="Confirmar">
+                <input type="submit" class="btn btn-light" value="Confirmar" required >
 
             </form>
 

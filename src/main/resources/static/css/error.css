@@ -7,6 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
+
 }
 
 .error-container {
@@ -15,6 +16,10 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .error-title {
