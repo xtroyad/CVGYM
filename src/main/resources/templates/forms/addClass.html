@@ -8,13 +8,13 @@
     <div class="contenedor">
 
         <div class="form">
-            <form>
+
                 <h2>Añadir clase a un gimnasio</h2>
                 <label>Gimnasio:</label>
 
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <select id="mySelectGym" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                     {{#gym}}
-                    <option class="{{gym.id}}">{{city}} ({{ccaa}}) | {{address}}, {{number}}, {{zip}}</option>
+                    <option class="{{id}}" value="{{id}}">{{city}} ({{ccaa}}) | {{address}}, {{number}}, {{zip}}</option>
                     {{/gym}}
                 </select>
 
@@ -22,12 +22,11 @@
 
                 <label>Clase:</label>
 
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <select id="mySelectCourse" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                     <option selected>Abre para seleccionar</option>
-
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    {{#course}}
+                    <option class="{{id}}" value="{{id}}">{{name}} (Intensidad: {{intensity}})</option>
+                    {{/course}}
 
                 </select>
                 <br><br>
@@ -37,12 +36,12 @@
 
                 <div id="calendar"></div>
 
-            </form>
 
         </div>
 
     </div>
 
+    <script src="/js/addClass.js"></script>
     <script src="prueba.js"></script>
 </main>
 {{>footer}}
