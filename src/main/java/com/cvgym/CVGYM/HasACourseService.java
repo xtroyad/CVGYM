@@ -76,9 +76,9 @@ public class HasACourseService {
         if (containsGymKey(gymId)) {
             gymCoursesMap.remove(gymId);
 
-            for(Long kCourse: courseGymsMap.keySet()){
+            for(Long courseId: courseGymsMap.keySet()){
 
-                List<Gym> listGyms = courseGymsMap.get(kCourse);
+                List<Gym> listGyms = courseGymsMap.get(courseId);
                 List<Gym> listAux= new ArrayList<>();
 
                 for(Gym g :listGyms){
@@ -87,7 +87,7 @@ public class HasACourseService {
                     }
                 }
 
-                courseGymsMap.put(kCourse, listAux);
+                courseGymsMap.put(courseId, listAux);
             }
         }
     }
@@ -95,10 +95,32 @@ public class HasACourseService {
     public void deleteCourse(Long courseId) {
         if (containsCourseKey(courseId)) {
             courseGymsMap.remove(courseId);
-            for (List<Course> listCourses : gymCoursesMap.values()) {
+            for (Long gymId : gymCoursesMap.keySet()) {
+                List<Course> listCourses = gymCoursesMap.get(gymId);
+                List<Course> listAux= new ArrayList<>();
+
                 for (Course course : listCourses) {
-                    if (course.getId() == courseId) {
-                        listCourses.remove(course.getId());
+                    if (!course.getId().equals(courseId)) {
+                        listAux.add(course);
+                    }
+                }
+
+                gymCoursesMap.put(gymId, listAux);
+            }
+        }
+    }
+
+    public void updateInfoCourse(Long courseId, Course course) {
+        if (containsCourseKey(courseId)) {
+            for(Long gymId: gymCoursesMap.keySet()){
+
+                List<Course> listCourse = gymCoursesMap.get(gymId);
+                List<Course> listAux= new ArrayList<>();
+                for(Course c :listCourse){
+                    if(c.getId().equals(courseId)){
+                        listAux.add(course);
+                    }else{
+                        listAux.add(c);
                     }
                 }
             }

@@ -49,6 +49,7 @@ public class CourseService {
 
     public Course putCourse(Long id, Course course) {
         course.setId(id);
+        hasACourseService.updateInfoCourse(id,course);
         return courses.put(id, course);
 
     }
