@@ -1,6 +1,7 @@
 package com.cvgym.CVGYM.web;
 
 import com.cvgym.CVGYM.HasACourseService;
+import com.cvgym.CVGYM.coach.CoachService;
 import com.cvgym.CVGYM.courseSet.Course;
 import com.cvgym.CVGYM.courseSet.CourseService;
 import com.cvgym.CVGYM.gym.Gym;
@@ -28,6 +29,8 @@ public class GymWebController {
     private QuestionService questionService;
     @Autowired
     private HasACourseService hasACourseService;
+    @Autowired
+    private CoachService coachService;
 
 
     @GetMapping("/")
@@ -68,7 +71,11 @@ public class GymWebController {
         }
 
     }
-
+    @GetMapping("/coaches/")
+    public String coaches(Model model) {
+        model.addAttribute("coaches", coachService.getAll());
+        return "coaches";
+    }
 
     @GetMapping("/create-Class/")
     public String createClassPage() {

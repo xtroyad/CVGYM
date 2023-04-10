@@ -1,0 +1,62 @@
+{{>header}}
+<main class="d-flex flex-column min-vh-100">
+    <link rel="stylesheet" href="/css/coaches.css">
+    <div class="filtersContainer">
+
+
+        <div class="filters">
+            <h3>Filtros</h3>
+
+            <label>Comunidad:</label>
+            <select id="filter" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option value="todos">Todos</option>
+                <!--///////////////////////////////////////////////////////-->
+                {{#gymDir}}
+                <option value="{{.}}">{{.}}</option>
+                {{/gymDir}}
+                <!--///////////////////////////////////////////////////////-->
+            </select>
+
+        </div>
+
+
+        <div class="coaches">
+
+
+            <h2 class="coach">Entrenadores</h2>
+            <ul id="list">
+                {{#coaches}}
+
+                <li>
+
+                    <div class="ele">
+                        <div class="imagen">
+                            <img src="/img/center/gymPhoto.jpg" alt="Imagen">
+                        </div>
+
+                        <div class="person">
+                            <div class="buttonAndTittle">
+                                <h2>IDENTIFICADOR: {{id}}</h2>
+                                <div class="buttons">
+                                    <a href="#" class="btn btn-danger" data-id="{{id}}">Eliminar</a>
+                                </div>
+
+                            </div>
+                            <p>{{name}} {{lastName}}</p>
+                            <p>Id Gimnasio: {{gymId}}</p>
+
+                        </div>
+                    </div>
+                </li>
+
+
+                {{/coaches}}
+            </ul>
+        </div>
+    </div>
+
+
+    <script src="/js/delete/deleteCoach.js"></script>
+    <script src="/js/coaches.js"></script>
+</main>
+{{>footer}}

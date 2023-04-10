@@ -1,15 +1,16 @@
 {{>header}}
 <main class="d-flex flex-column min-vh-100">
     <link rel="stylesheet" href="/css/form.css">
+
     <div>
         <h1>Ajustes de Administrador</h1>
     </div>
 
     <div class="contenedor">
 
-        <div class="form" >
+        <div class="form" data-id="{{course.id}}" >
 
-                <h2>Crear nueva clase</h2>
+                <h2>Editar clase</h2>
 
                 <label>Nombre:</label>
                 <input type="text" id="name" name="name" class="form-control" placeholder="Nombre" aria-label="First name" value="{{course.name}}">
@@ -32,5 +33,7 @@
         </div>
 
     </div>
+    <script src="/js/put/putClass.js" charset="UTF-8"></script>
 </main>
+
 {{>footer}}
