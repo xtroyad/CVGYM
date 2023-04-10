@@ -7,13 +7,13 @@
         <div class="filters">
             <h3>Filtros</h3>
 
-            <label>Comunidad:</label>
+            <label>Gimnasio:</label>
             <select id="filter" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                 <option value="todos">Todos</option>
                 <!--///////////////////////////////////////////////////////-->
-                {{#gymDir}}
-                <option value="{{.}}">{{.}}</option>
-                {{/gymDir}}
+                {{#gym}}
+                <option value="{{id}}">ID: {{id}}. {{city}} ({{ccaa}})</option>
+                {{/gym}}
                 <!--///////////////////////////////////////////////////////-->
             </select>
 
@@ -26,8 +26,7 @@
             <h2 class="coach">Entrenadores</h2>
             <ul id="list">
                 {{#coaches}}
-
-                <li>
+                <li data-id="{{id}}" class="{{gymId}}">
 
                     <div class="ele">
                         <div class="imagen">
@@ -57,6 +56,6 @@
 
 
     <script src="/js/delete/deleteCoach.js"></script>
-    <script src="/js/coaches.js"></script>
+    <script src="/js/filters/coaches.js"></script>
 </main>
 {{>footer}}

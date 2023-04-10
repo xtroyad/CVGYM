@@ -28,4 +28,4 @@ for (const btnEliminar of btnEliminarList) {
                 alert('An error occurred while trying to delete the object.');
             });
     });
-}s
+}

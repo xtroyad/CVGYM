@@ -24,6 +24,7 @@ public class CoachService {
     public Collection<Coach> getAll() {
         return coaches.values();
     }
+
     public Optional<Coach> findById(Long id) {
         if (containsKey(id)) {
             Coach c = coaches.get(id);

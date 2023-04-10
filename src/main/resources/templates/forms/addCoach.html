@@ -8,7 +8,7 @@
 <div class="contenedor">
 
     <div class="form">
-        <form>
+        <form  method="post" action="/course/" >
             <h2>Añadir entrenador a un gimnasio</h2>
 
             <div class="row">
@@ -25,14 +25,10 @@
             <br><br>
 
             <label>Gimnasio:</label>
-            <label >Entrenador:</label>
             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-
-                <option selected>Abre para seleccionar</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-
+                {{#gym}}
+                <option >ID: {{id}} | {{address}} ({{city}})</option>
+                {{/gym}}
             </select>
 
             <br><br>

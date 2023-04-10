@@ -73,6 +73,7 @@ public class GymWebController {
     }
     @GetMapping("/coaches/")
     public String coaches(Model model) {
+        model.addAttribute("gym", gymService.getAll());
         model.addAttribute("coaches", coachService.getAll());
         return "coaches";
     }
@@ -89,7 +90,8 @@ public class GymWebController {
     }
 
     @GetMapping("/add-Coach/")
-    public String addCoachPage() {
+    public String addCoachPage(Model model) {
+        model.addAttribute("gym", gymService.getAll());
         return "forms/addCoach";
     }
 
@@ -194,6 +196,13 @@ public class GymWebController {
         model.addAttribute(questionService.getAllQuestions());
         return null;
     }
+    @PostMapping("/coach/{gymId}")
+    public String showQuestions(Model model,@PathVariable Long gymId){
+        model.addAttribute(questionService.getAllQuestions());
+        return null;
+    }
+
+
 
 
 }
