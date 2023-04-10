@@ -1,0 +1,43 @@
+{{>header}}
+<link rel="stylesheet" href="/css/center.css">
+<main class="d-flex flex-column min-vh-100">
+    <section class="section-3">
+
+        <h1 class="courseTitle">NUESTRAS CLASES</h1>
+
+        <ul id="list">
+            {{#courses}}
+            <li class="nameCourse">
+
+                <div class="ele">
+
+                    <div class="CourseImagen">
+                        <img src="/img/center/zumba.jpg" alt="Imagen">
+                    </div>
+
+                    <div class="course">
+
+                        <div class="buttonAndTittle">
+                            <h2>{{name}}</h2>
+                            <div class="buttons">
+
+                                <a href="/edit-Class?courseId={{id}}" class="btn btn-secondary">Editar</a>
+                                <a href="#" class="btn btn-danger" data-id="{{id}}">Eliminar</a>
+
+                            </div>
+                        </div>
+
+                        <p>Intensidad: Nivel {{intensity}}</p>
+                        <p>Descripción: {{description}} </p>
+
+
+
+                    </div>
+                </div>
+
+            </li>
+            {{/courses}}
+        </ul>
+    </section>
+</main>
+{{>footer}}

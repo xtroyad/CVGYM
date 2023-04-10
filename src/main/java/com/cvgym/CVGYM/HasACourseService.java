@@ -77,25 +77,18 @@ public class HasACourseService {
             gymCoursesMap.remove(gymId);
 
             for(Long kCourse: courseGymsMap.keySet()){
+
                 List<Gym> listGyms = courseGymsMap.get(kCourse);
+                List<Gym> listAux= new ArrayList<>();
+
                 for(Gym g :listGyms){
-                    if(g.getId().equals(gymId)){
-                        listGyms.remove(g);
+                    if(!g.getId().equals(gymId)){
+                        listAux.add(g);
                     }
                 }
-                courseGymsMap.put(kCourse, listGyms);
+
+                courseGymsMap.put(kCourse, listAux);
             }
-//            for (List<Gym> listGyms : courseGymsMap.values()) {
-//
-////                List<Gym> listaux = listGyms;
-//
-//                for (Gym gym : listGyms) {
-//                    if (gym.getId().equals(gymId)) {
-//                        listGyms.remove(gym);
-//                    }
-//                }
-//
-//            }
         }
     }
 

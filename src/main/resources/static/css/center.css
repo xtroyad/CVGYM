@@ -3,8 +3,7 @@
 
 /* Set the default margin and padding to 0 for the whole page */
 body {
-    margin: 0;
-    padding: 0;
+
     background-color: #323030 !important;
 }
 
@@ -176,6 +175,11 @@ p .course, .info p {
 }
 li{
     list-style: none;
+    width: 100% ;
+}
+
+ul{
+    width: 100% ;
 }
 
 .course h2,p .info, .course p{
@@ -206,8 +210,8 @@ li{
 }
 
 .CourseImagen{
-    flex-grow: 1;
-    width: 100%;
+    flex-shrink: 0;
+    width: 25%;
     overflow: hidden;
 
 }
@@ -217,3 +221,26 @@ li{
     height: 100%;
 }
 
+
+.course{
+    flex: 1;
+    padding: 20px;
+}
+
+.buttonAndTittle {
+    display: flex;
+}
+
+.buttonAndTittle h2 {
+    flex-grow: 1;
+}
+
+.buttons {
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+}
+
+.buttons a{
+    margin: 5px;
+}

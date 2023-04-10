@@ -1,0 +1,36 @@
+{{>header}}
+<main class="d-flex flex-column min-vh-100">
+    <link rel="stylesheet" href="/css/form.css">
+    <div>
+        <h1>Ajustes de Administrador</h1>
+    </div>
+
+    <div class="contenedor">
+
+        <div class="form" >
+
+                <h2>Crear nueva clase</h2>
+
+                <label>Nombre:</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Nombre" aria-label="First name" value="{{course.name}}">
+                <br><br>
+
+                <label for="customRange3" class="form-label">Intensidad:</label>
+                <input type="range" id="intensity" name="intensity" class="form-range" min="0" max="5" step="1" id="customRange3" value="{{course.intensity}}">
+                <br><br>
+
+                <div class="form-group">
+                    <label for="description">Descripción:</label>
+                    <textarea class="form-control" id="description" name="description" rows="4" placeholder="Descripción aquí..." >{{course.description}}</textarea>
+                </div>
+                <br><br>
+
+                <a id="myButton"   href="#" class="btn btn-secondary">Confirmar</a>
+
+
+
+        </div>
+
+    </div>
+</main>
+{{>footer}}

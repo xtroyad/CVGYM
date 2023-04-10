@@ -1,9 +1,10 @@
-const filtro = document.getElementById("filter");
+const filtro = document.getElementById("typeQuestion");
 
 const lista = document.getElementById("list");
 
 filtro.addEventListener("change", function () {
     const opcionSeleccionada = filtro.value;
+
 
     if (opcionSeleccionada === "todos") {
         for (var i = 0; i < lista.children.length; i++) {
@@ -12,6 +13,8 @@ filtro.addEventListener("change", function () {
     }else{
 
         for (var i = 0; i < lista.children.length; i++) {
+
+            console.log(lista.children[i].classList.value)
 
             if(lista.children[i].classList.value === opcionSeleccionada){
 

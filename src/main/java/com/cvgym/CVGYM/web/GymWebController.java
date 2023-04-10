@@ -10,8 +10,6 @@ import com.cvgym.CVGYM.manager.ManagerService;
 import com.cvgym.CVGYM.question.Question;
 import com.cvgym.CVGYM.question.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +23,7 @@ public class GymWebController {
     @Autowired
     private ManagerService managerService;
     @Autowired
-    private CourseService couserService;
+    private CourseService courseService;
     @Autowired
     private QuestionService questionService;
     @Autowired
@@ -77,6 +75,12 @@ public class GymWebController {
         return "forms/createClass";
     }
 
+    @GetMapping("/edit-Class")
+    public String edirCourse(Model model,  @RequestParam Long courseId) {
+        model.addAttribute("course", courseService.findById(courseId).get());
+        return "forms/editClass";
+    }
+
     @GetMapping("/add-Coach/")
     public String addCoachPage() {
         return "forms/addCoach";
@@ -84,9 +88,20 @@ public class GymWebController {
 
     @GetMapping("/add-class-to-gym/")
     public String addClassToGymPage(Model model) {
-        model.addAttribute("course", couserService.getAll());
+        model.addAttribute("course", courseService.getAll());
         model.addAttribute("gym",gymService.getAll());
         return "forms/addClass";
+    }
+
+    @GetMapping("/mailbox/")
+    public String showMailbox(Model model) {
+        model.addAttribute("questions",questionService.getAllQuestions());
+        return "mailbox";
+    }
+    @GetMapping("/course/")
+    public String showAllCourses(Model model) {
+        model.addAttribute("courses", courseService.getAll());
+        return "courses";
     }
 
     @GetMapping("/create-question/")
@@ -157,7 +172,7 @@ public class GymWebController {
 
     @PostMapping("/course/")
     public String newClass(Model model, Course course) {
-        couserService.createCourse(course);
+        courseService.createCourse(course);
         return "redirect:/";
     }
 

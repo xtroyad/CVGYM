@@ -109,8 +109,6 @@ public class GymRESTController {
             if(gym.get().getManagerId() != null && gym.get().getManagerId() !=0){
                 managerService.deleteManager(gym.get().getManagerId());
             }
-            System.out.println(gym.get().getId());
-            System.out.println(gym.get().getNumber());
 
             coachService.deleteAllCoaches(gymId);
 
