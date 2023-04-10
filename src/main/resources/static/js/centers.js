@@ -1,17 +1,21 @@
-var filtro = document.getElementById("filter");
+const filtro = document.getElementById("filter");
 
-var lista = document.getElementById("list");
+const lista = document.getElementById("list");
 
 filtro.addEventListener("change", function () {
-    var opcionSeleccionada = filtro.value;
+    const opcionSeleccionada = filtro.value;
 
+    console.log( opcionSeleccionada )
 
     if (opcionSeleccionada === "todos") {
         for (var i = 0; i < lista.children.length; i++) {
             lista.children[i].style.display = "block";
         }
     }else{
+
         for (var i = 0; i < lista.children.length; i++) {
+
+            console.log(lista.children[i].classList.value)
 
             if(lista.children[i].classList.value === opcionSeleccionada){
 
@@ -22,6 +26,5 @@ filtro.addEventListener("change", function () {
 
         }
     }
-
 
 });

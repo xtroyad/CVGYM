@@ -67,7 +67,12 @@ ul {
 
 li {
     list-style: none;
+    transition: transform 0.2s ease-in-out;
 
+}
+li:hover {
+    transform: scale(1.02);
+    cursor: pointer;
 }
 
 .ele {

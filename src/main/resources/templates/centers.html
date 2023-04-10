@@ -27,7 +27,8 @@
             <h2 class="gym">GIMNASIOS</h2>
             <ul id="list">
                 {{#gyms}}
-                <li class="{{ccaa}}">
+
+                <li class="{{ccaa}}" data-id="{{id}}">
 
                     <div class="ele">
                         <div class="gymImagen">
@@ -45,22 +46,22 @@
                                 </div>
 
                             </div>
-
                             <p>{{ccaa}}</p>
                             <p>{{address}}, Nº{{number}}, {{zip}} - {{phoneNumber}}</p>
                             <p>Más información..</p>
-
                         </div>
                     </div>
                 </li>
+
 
                 {{/gyms}}
             </ul>
         </div>
     </div>
 
-    <script src="/js/delete.js"></script>
+    <script src="/js/clickToGym.js"></script>
 
+    <script src="/js/delete.js"></script>
     <script src="/js/centers.js"></script>
 </main>
 {{>footer}}

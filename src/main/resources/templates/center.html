@@ -14,9 +14,9 @@
             <div class="text" >
                 <p>Dirección:</p>
                 <p class="ubication">
-                    C/Río Jarama, 11, Mostoles(Madrid), 28934 </p>
+                    {{gym.address}}, {{gym.number}}, {{gym.city}}({{gym.ccaa}}), {{gym.zip}} </p>
                 <p>Número de Conctacto:</p>
-                <p>9789078696</p>
+                <p>{{gym.phoneNumber}}</p>
             </div>
         </div>
         <!-- ///////////////////////////////////////////////////////////////////////////////////-->
@@ -35,6 +35,7 @@
         </div>
         <!-- ///////////////////////////////////////////////////////////////////////////////////-->
     </section>
+
 </div>
 
 
@@ -44,7 +45,7 @@
     <h1 class="courseTitle">NUESTRAS CLASES</h1>
 
     <ul id="list">
-
+        {{#courses}}
         <li class="nameCourse">
 
             <div class="ele">
@@ -56,105 +57,14 @@
                 </div>
 
                 <div class="course">
-                    <h2>Zumba</h2>
-                    <p>Intendidad: Nivel 5</p>
-                    <p>Descripción: Officia est consectetur laborum amet ex aliquip nostrud ea adipisicing.
-                        Incididunt deserunt anim culpa est Lorem aute veniam ex voluptate ipsum laborum qui. Quis
-                        elit laboris aute aliqua qui anim do. Mollit ea adipisicing do ut ex nostrud ipsum mollit
-                        nulla occaecat occaecat ut aliquip dolor. Laboris quis ea sit consectetur ullamco. </p>
+                    <h2>{{name}}</h2>
+                    <p>Intendidad: Nivel {{intensity}}</p>
+                    <p>Descripción: {{description}} </p>
                 </div>
 
             </div>
         </li>
-
-        <li class="nameCourse">
-
-            <div class="ele">
-
-                <div class="CourseImagen">
-
-                    <img src="/zumba.jpg" alt="Imagen">
-
-                </div>
-
-                <div class="course">
-                    <h2>Zumba</h2>
-                    <p>Intendidad: Nivel 5</p>
-                    <p>Descripción: Officia est consectetur laborum amet ex aliquip nostrud ea adipisicing.
-                        Incididunt deserunt anim culpa est Lorem aute veniam ex voluptate ipsum laborum qui. Quis
-                        elit laboris aute aliqua qui anim do. Mollit ea adipisicing do ut ex nostrud ipsum mollit
-                        nulla occaecat occaecat ut aliquip dolor. Laboris quis ea sit consectetur ullamco. </p>
-                </div>
-
-            </div>
-        </li>
-
-        <li class="nameCourse">
-
-            <div class="ele">
-
-                <div class="CourseImagen">
-
-                    <img src="/zumba.jpg" alt="Imagen">
-
-                </div>
-
-                <div class="course">
-                    <h2>Zumba</h2>
-                    <p>Intendidad: Nivel 5</p>
-                    <p>Descripción: Officia est consectetur laborum amet ex aliquip nostrud ea adipisicing.
-                        Incididunt deserunt anim culpa est Lorem aute veniam ex voluptate ipsum laborum qui. Quis
-                        elit laboris aute aliqua qui anim do. Mollit ea adipisicing do ut ex nostrud ipsum mollit
-                        nulla occaecat occaecat ut aliquip dolor. Laboris quis ea sit consectetur ullamco. </p>
-                </div>
-
-            </div>
-        </li>
-
-        <li class="nameCourse">
-
-            <div class="ele">
-
-                <div class="CourseImagen">
-
-                    <img src="/zumba.jpg" alt="Imagen">
-
-                </div>
-
-                <div class="course">
-                    <h2>Zumba</h2>
-                    <p>Intendidad: Nivel 5</p>
-                    <p>Descripción: Officia est consectetur laborum amet ex aliquip nostrud ea adipisicing.
-                        Incididunt deserunt anim culpa est Lorem aute veniam ex voluptate ipsum laborum qui. Quis
-                        elit laboris aute aliqua qui anim do. Mollit ea adipisicing do ut ex nostrud ipsum mollit
-                        nulla occaecat occaecat ut aliquip dolor. Laboris quis ea sit consectetur ullamco. </p>
-                </div>
-
-            </div>
-        </li>
-
-        <li class="nameCourse">
-
-            <div class="ele">
-
-                <div class="CourseImagen">
-
-                    <img src="/zumba.jpg" alt="Imagen">
-
-                </div>
-
-                <div class="course">
-                    <h2>Zumba</h2>
-                    <p>Intendidad: Nivel 5</p>
-                    <p>Descripción: Officia est consectetur laborum amet ex aliquip nostrud ea adipisicing.
-                        Incididunt deserunt anim culpa est Lorem aute veniam ex voluptate ipsum laborum qui. Quis
-                        elit laboris aute aliqua qui anim do. Mollit ea adipisicing do ut ex nostrud ipsum mollit
-                        nulla occaecat occaecat ut aliquip dolor. Laboris quis ea sit consectetur ullamco. </p>
-                </div>
-
-            </div>
-        </li>
-
+        {{/courses}}
     </ul>
 </section>
 

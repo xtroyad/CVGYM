@@ -8,9 +8,9 @@ for (const btnEliminar of btnEliminarList) {
 
         // Get the ID of the object to be deleted from the "data-id" attribute of the button
         const id = btnEliminar.getAttribute('data-id');
-
+        console.log(id)
         // Send the DELETE request to the REST API
-        fetch('/api/gym?gymId=${id}',  {
+        fetch(`/api/gym?gymId=${encodeURIComponent(id)}`,  {
             method: 'DELETE'
         })
             .then(response => {

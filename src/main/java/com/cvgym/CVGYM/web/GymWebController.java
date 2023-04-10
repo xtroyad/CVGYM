@@ -1,5 +1,6 @@
 package com.cvgym.CVGYM.web;
 
+import com.cvgym.CVGYM.HasACourseService;
 import com.cvgym.CVGYM.courseSet.Course;
 import com.cvgym.CVGYM.courseSet.CourseService;
 import com.cvgym.CVGYM.gym.Gym;
@@ -27,6 +28,8 @@ public class GymWebController {
     private CourseService couserService;
     @Autowired
     private QuestionService questionService;
+    @Autowired
+    private HasACourseService hasACourseService;
 
 
     @GetMapping("/")
@@ -107,14 +110,24 @@ public class GymWebController {
         return "centers";
     }
 
-    @GetMapping("/center/")
+    @GetMapping("/center")
 
-    public String showCenter(Model model) {
+    public String showCenter(Model model, @RequestParam Long gymId) {
 
-        model.addAttribute("ccaa", gymService.getAllCCAA());
-        model.addAttribute("gyms", gymService.getAll());
+        Optional<Gym> op = gymService.findById(gymId);
 
-        return "center";
+        if (op.isPresent()) {
+
+            model.addAttribute("gym", op.get());
+
+            model.addAttribute("courses", hasACourseService.getCourses(gymId).get());
+            return "center";
+        } else {
+            // If gym does not exist, return status 404 (Not Found)
+            return "redirect:/error";
+        }
+
+
     }
     //--------------------------------------------------------------------------------------------------------------------
 
