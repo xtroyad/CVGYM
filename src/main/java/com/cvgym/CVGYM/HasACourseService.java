@@ -7,6 +7,8 @@ import com.cvgym.CVGYM.courseSet.CourseService;
 import com.cvgym.CVGYM.gym.Gym;
 import com.cvgym.CVGYM.gym.GymService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -107,6 +109,20 @@ public class HasACourseService {
 
                 gymCoursesMap.put(gymId, listAux);
             }
+        }
+    }
+
+    public void deleteCourseFromGym(Long gymId, Long courseId) {
+        if (containsCourseKey(courseId)) {
+
+            List<Course> listCourses = gymCoursesMap.get(gymId);
+            List<Course> listAux= new ArrayList<>();
+            for (Course course : listCourses) {
+                if (!course.getId().equals(courseId)) {
+                    listAux.add(course);
+                }
+            }
+            gymCoursesMap.put(gymId, listAux);
         }
     }
 

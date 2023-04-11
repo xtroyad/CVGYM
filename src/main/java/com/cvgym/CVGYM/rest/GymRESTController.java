@@ -93,6 +93,21 @@ public class GymRESTController {
 
     }
 
+    @DeleteMapping("/gym-courses")
+    public ResponseEntity removeCourseFromGym(@RequestParam Long gymId, @RequestParam Long courseId){
+        // Find course by id
+        Optional<Course> op = courseService.findById(courseId);
+
+        if (op.isPresent()) {
+            // Delete course by id from a gym
+            hasACourseService.deleteCourseFromGym(gymId, courseId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            // If course does not exist, return status 404 (Not Found)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
     @PostMapping( "/gym/")
     @ResponseStatus(HttpStatus.CREATED)
@@ -145,7 +160,7 @@ public class GymRESTController {
 
     @GetMapping("/course")
     public ResponseEntity<Course> getCourse(@RequestParam Long courseId)  {
-        // Find gym by id
+        // Find course by id
         Optional<Course> op = courseService.findById(courseId);
         // If course exists, return it with status 200 (OK)
         if (op.isPresent()) {
