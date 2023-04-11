@@ -113,16 +113,33 @@ public class HasACourseService {
     public void updateInfoCourse(Long courseId, Course course) {
         if (containsCourseKey(courseId)) {
             for(Long gymId: gymCoursesMap.keySet()){
-
-                List<Course> listCourse = gymCoursesMap.get(gymId);
+                List<Course> listCourses = gymCoursesMap.get(gymId);
                 List<Course> listAux= new ArrayList<>();
-                for(Course c :listCourse){
+                for(Course c :listCourses){
                     if(c.getId().equals(courseId)){
                         listAux.add(course);
                     }else{
                         listAux.add(c);
                     }
                 }
+                gymCoursesMap.put(gymId, listAux);
+            }
+        }
+    }
+
+    public void updateInfoGym(Long gymId, Gym gym) {
+        if (containsGymKey(gymId)) {
+            for(Long courseId: courseGymsMap.keySet()){
+                List<Gym> listGyms = courseGymsMap.get(courseId);
+                List<Gym> listAux= new ArrayList<>();
+                for(Gym g :listGyms){
+                    if(g.getId().equals(gymId)){
+                        listAux.add(gym);
+                    }else{
+                        listAux.add(g);
+                    }
+                }
+                courseGymsMap.put(courseId, listAux);
             }
         }
     }

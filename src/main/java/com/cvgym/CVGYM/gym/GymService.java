@@ -36,6 +36,7 @@ public class GymService {
 
 
     public Gym putGym(Long gymId, Gym gym) {
+        hasACourseService.updateInfoGym(gymId,gym);
         return gyms.put(gymId, gym);
 
     }
