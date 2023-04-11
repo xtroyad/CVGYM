@@ -61,7 +61,6 @@ public class GymWebController {
             }else{
                 model.addAttribute("manager",new Manager(" "," ",0l));
             }
-            System.out.println("pasamos");
             model.addAttribute("gym",op.get());
 
             return "forms/editGym";

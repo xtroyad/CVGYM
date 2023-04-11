@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Yoga",
+    "intensity": 1,
+    "description": "Un entrenamiento de baja intensidad que enfatiza la respiración, la flexibilidad y la relajación."
+  },
+  {
+    "name": "Entrenamiento Interválico de Alta Intensidad (HIIT)",
+    "intensity": 5,
+    "description": "Un entrenamiento de alta intensidad que implica breves ráfagas de ejercicio intenso seguido de períodos de descanso."
+  },
+  {
+    "name": "Ciclismo",
+    "intensity": 4,
+    "description": "Un ejercicio cardiovascular que implica andar en bicicleta estacionaria."
+  },
+  {
+    "name": "Natación",
+    "intensity": 3,
+    "description": "Un ejercicio cardiovascular de bajo impacto que implica nadar vueltas."
+  },
+  {
+    "name": "Levantamiento de pesas",
+    "intensity": 2,
+    "description": "Un ejercicio de fuerza que implica levantar pesas para construir músculo y mejorar la postura."
+  },
+  {
+    "name": "Baile aeróbico",
+    "intensity": 3,
+    "description": "Un ejercicio cardiovascular que implica bailar al ritmo de la música."
+  }
+]

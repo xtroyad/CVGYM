@@ -1,0 +1,32 @@
+[
+  {
+    "mail": "juan.perez@example.com",
+    "subject": "Consulta de horarios",
+    "description": "Quisiera saber si tienen clases los sábados por la mañana.",
+    "typeQuestion": "Comentarios"
+  },
+  {
+    "mail": "maria.gonzalez@example.com",
+    "subject": "Membresías",
+    "description": "Estoy interesado en obtener una membresía y quisiera saber cuáles son los planes disponibles.",
+    "typeQuestion": "Más información"
+  },
+  {
+    "mail": "carlos.martinez@example.com",
+    "subject": "Renovación de contrato",
+    "description": "Mi contrato está por vencer y quisiera saber cuáles son las opciones de renovación disponibles.",
+    "typeQuestion": "Dudas sobre tu contrato"
+  },
+  {
+    "mail": "sofia.hernandez@example.com",
+    "subject": "Sugerencia de mejoras",
+    "description": "Me gustaría proponer algunas mejoras para la sala de pesas, ¿a dónde puedo enviar mis sugerencias?",
+    "typeQuestion": "Comentarios"
+  },
+  {
+    "mail": "pedro.lopez@example.com",
+    "subject": "Problema con el equipo",
+    "description": "El equipo de cardio número 5 parece estar descompuesto, ¿pueden enviar a alguien a revisarlo?",
+    "typeQuestion": "Otros"
+  }
+]

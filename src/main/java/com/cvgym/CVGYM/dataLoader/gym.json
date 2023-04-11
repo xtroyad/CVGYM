@@ -1,16 +1,42 @@
 [
   {
-  "city":"Murcia",
-  "ccaa": "Murcia",
-  "address": "khashjkasdfhjk",
-  "number":"el tuyo bb",
-  "zip": "30570",
-  "phoneNumber": "jasldkf"},
+    "city": "Murcia",
+    "ccaa": "Región de Murcia",
+    "address": "Calle Mayor",
+    "number": "10",
+    "zip": "30001",
+    "phoneNumber": "+34 968 123 456"
+  },
   {
-    "city":"MADRID",
-    "ccaa": "Mostoles",
-    "address": "khashjkasdfhjk",
-    "number":"el tuyo bb",
-    "zip": "30570",
-    "phoneNumber": "jasldkf"}
+    "city": "Madrid",
+    "ccaa": "Comunidad de Madrid",
+    "address": "Calle Gran Vía",
+    "number": "20",
+    "zip": "28013",
+    "phoneNumber": "+34 910 123 456"
+  },
+  {
+    "city": "Barcelona",
+    "ccaa": "Cataluña",
+    "address": "Avinguda Diagonal",
+    "number": "150",
+    "zip": "08018",
+    "phoneNumber": "+34 935 123 456"
+  },
+  {
+    "city": "Sevilla",
+    "ccaa": "Andalucía",
+    "address": "Calle Sierpes",
+    "number": "5",
+    "zip": "41004",
+    "phoneNumber": "+34 954 123 456"
+  },
+  {
+    "city": "Valencia",
+    "ccaa": "Comunidad Valenciana",
+    "address": "Calle Colón",
+    "number": "30",
+    "zip": "46004",
+    "phoneNumber": "+34 963 123 456"
+  }
 ]
