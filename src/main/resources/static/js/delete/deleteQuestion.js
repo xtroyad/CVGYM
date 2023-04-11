@@ -9,6 +9,12 @@ for (const btnEliminar of btnEliminarList) {
         // Get the ID of the object to be deleted from the "data-id" attribute of the button
         const id = btnEliminar.getAttribute('data-id');
 
+        // Ask the user to confirm the deletion
+        const confirmed = confirm('Are you sure you want to delete this Question?');
+        if (!confirmed) {
+            return; // Exit the function without doing anything
+        }
+
         // Send the DELETE request to the REST API
         fetch(`/api/question?questionId=${encodeURIComponent(id)}`,  {
             method: 'DELETE'

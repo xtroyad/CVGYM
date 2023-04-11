@@ -11,6 +11,12 @@ for (const btnEliminar of btnEliminarList) {
         const idGym = dataGymId.getAttribute('data-id');
         const id = btnEliminar.getAttribute('data-id');
 
+        // Ask the user to confirm the deletion
+        const confirmed = confirm('Are you sure you want to delete this Course?');
+        if (!confirmed) {
+            return; // Exit the function without doing anything
+        }
+
         // Send the DELETE request to the REST API
         fetch(`/api/gym-courses?gymId=${encodeURIComponent(idGym)}&courseId=${encodeURIComponent(id)}`,  {
             method: 'DELETE'
