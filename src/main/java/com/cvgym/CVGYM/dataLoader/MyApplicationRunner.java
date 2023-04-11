@@ -21,6 +21,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+
 @Component
 public class MyApplicationRunner implements ApplicationRunner {
     @Autowired
@@ -42,7 +44,7 @@ public class MyApplicationRunner implements ApplicationRunner {
         loadQuestion();
         loadCourses();
         loadCoach();
-
+        loadCourseTogym();
 
     }
 
@@ -130,29 +132,15 @@ public class MyApplicationRunner implements ApplicationRunner {
         }
     }
 
+    public void loadCourseTogym(){
 
+        int ncourses = courseService.getAll().size();
+        for( Gym g :gymService.getAll()){
+            Long id = new Random().nextLong(ncourses)+1;
 
-//    public static void dataLoader() throws FileNotFoundException {
-//        File file = new File("");
-//        Scanner sc = new Scanner(file);
-//        StringBuilder information = new StringBuilder();
-//        while (sc.hasNext()) {
-//            information.append((sc.nextLine()));
-//        }
-//        sc.close();
-//        JSONArray jsonArray = new JSONArray(information.toString());
-//
-//        for (int i = 0; i < jsonArray.length(); i++) {
-//            JSONObject e = jsonArray.getJSONObject(i);
-//
-//            System.out.println(e.getString("city"));
-//            System.out.println(e.getString("ccaa"));
-//            System.out.println(e.getString("address"));
-//            System.out.println(e.getString("number"));
-//            System.out.println(e.getString("zip"));
-//            System.out.println(e.getString("phoneNumber"));
-//        }
-//
-//    }
+            gymService.addCourse(courseService.findById(id).get(),g.getId());
+        }
+
+    }
 
 }

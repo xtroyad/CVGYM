@@ -28,10 +28,7 @@ public class GymService {
         return gym;
     }
 
-    public Course addCourse(Long gymId,Course course){
-        HasACourse pair =hasACourseService.createCourseInGym(gyms.get(gymId),course);
-        return pair.getCourse();
-    }
+
 
 
 
