@@ -6,7 +6,7 @@ const typeQuestion = [
 ];
 
 
-const select = document.getElementById("typeQuestion");
+const select = document.getElementById("filter");
 
 for (let i = 0; i < typeQuestion.length; i++) {
     const option = document.createElement("option");

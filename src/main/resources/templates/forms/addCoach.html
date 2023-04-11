@@ -1,33 +1,36 @@
 {{>header}}
 <main class="d-flex flex-column min-vh-100">
-<link rel="stylesheet" href="/css/form.css">
-<div>
-    <h1>Ajustes de Administrador</h1>
-</div>
+    <link rel="stylesheet" href="/css/form.css">
+    <div>
+        <h1>Ajustes de Administrador</h1>
+    </div>
 
-<div class="contenedor">
+    <div class="contenedor">
 
-    <div class="form">
+        <div class="form">
 
             <h2>Añadir entrenador a un gimnasio</h2>
 
             <div class="row">
                 <div class="col">
                     <label>Nombre:</label>
-                    <input id="name" type="text" class="form-control" placeholder="Nombre" aria-label="First name" required>
+                    <input id="name" type="text" class="form-control" placeholder="Nombre" aria-label="First name"
+                        required>
                 </div>
                 <div class="col">
                     <label>Apellidos:</label>
-                    <input id="lastName" type="text" class="form-control" placeholder="Apellidos" aria-label="Last name" required>
+                    <input id="lastName" type="text" class="form-control" placeholder="Apellidos" aria-label="Last name"
+                        required>
                 </div>
             </div>
 
             <br><br>
 
             <label>Gimnasio:</label>
-            <select id="selectGym"  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+            <select id="selectGym" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                required>
                 {{#gym}}
-                <option value="{{id}}" >ID: {{id}} | {{address}} ({{city}})</option>
+                <option value="{{id}}">ID: {{id}} | {{address}} ({{city}})</option>
                 {{/gym}}
             </select>
 
@@ -37,9 +40,9 @@
 
 
 
-    </div>
+        </div>
 
-</div>
+    </div>
     <script src="/js/post/postCoach.js"></script>
 </main>
 {{>footer}}

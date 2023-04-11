@@ -11,7 +11,7 @@ body {
 
 }
 
-div h1{
+div h1 {
     padding: 10px;
     background: white;
 }
@@ -25,8 +25,6 @@ div h1{
     width: 100% !important;
     background-color: #323030;
     margin: 0 0 0 0;
-
-    /* establece un color de fondo oscuro */
 }
 
 .form {

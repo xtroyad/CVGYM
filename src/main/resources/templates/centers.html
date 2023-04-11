@@ -2,39 +2,38 @@
 <main class="d-flex flex-column min-vh-100">
     <link rel="stylesheet" href="/css/centers.css">
     <div class="filtersContainer">
-
-
+        <!--///////////////////////////////////////////////////////////////////-->
+        <!--FILTERED BY CCAA-->
         <div class="filters">
             <h3>Filtros</h3>
-
 
             <label>Comunidad:</label>
             <select id="filter" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                 <option value="todos">Todos</option>
-                <!--///////////////////////////////////////////////////////-->
+
                 {{#ccaa}}
                 <option value="{{.}}">{{.}}</option>
                 {{/ccaa}}
-                <!--///////////////////////////////////////////////////////-->
+
             </select>
-
         </div>
-
-
+        <!--///////////////////////////////////////////////////////////////////-->
+        <!--ALL GYMS-->
         <div class="gyms">
-
 
             <h2 class="gym">GIMNASIOS</h2>
             <ul id="list">
-                {{#gyms}}
 
+                {{#gyms}}
+                <!--EVERY GYM-->
                 <li class="{{ccaa}}" data-id="{{id}}">
 
                     <div class="ele">
-                        <div class="gymImagen">
 
+                        <div class="gymImagen">
                             <img src="/img/center/gymPhoto.jpg" alt="Imagen">
                         </div>
+
                         <div class="ciudad">
                             <div class="buttonAndTittle">
                                 <h2>{{city}}</h2>
@@ -44,24 +43,23 @@
                                     <a href="#" class="btn btn-danger" data-id="{{id}}">Eliminar</a>
 
                                 </div>
-
                             </div>
                             <p>{{ccaa}}</p>
                             <p>{{address}}, Nº{{number}}, {{zip}} - {{phoneNumber}}</p>
                             <p>Más información..</p>
                         </div>
+
                     </div>
                 </li>
 
-
                 {{/gyms}}
+
             </ul>
         </div>
     </div>
-
+    <!--JS FOR DELETING, FILTERING AND ACCESSING A SITE-->
     <script src="/js/clickToGym.js"></script>
-
     <script src="/js/delete/deleteGym.js"></script>
-    <script src="/js/filters/centers.js"></script>
+    <script src="/js/filters/filter.js"></script>
 </main>
 {{>footer}}

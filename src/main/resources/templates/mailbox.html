@@ -3,21 +3,17 @@
     <link rel="stylesheet" href="/css/mailbox.css">
     <div class="filtersContainer">
 
-
         <div class="filters">
             <h3>Filtros</h3>
 
-
             <label>Tipo de Consulta:</label>
-            <select id="typeQuestion" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <select id="filter" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                 <option value="todos">Todos</option>
             </select>
 
         </div>
 
-
         <div class="questionsDiv">
-
 
             <h2 class="question">PREGUNTAS</h2>
             <ul id="list">
@@ -35,7 +31,6 @@
                                 <h2>{{subject}}</h2>
                                 <div class="buttons">
                                     <a href="#" class="btn btn-danger" data-id="{{id}}">Eliminar</a>
-
                                 </div>
 
                             </div>
@@ -46,15 +41,13 @@
                     </div>
                 </li>
 
-
                 {{/questions}}
             </ul>
         </div>
     </div>
 
-
     <script src="/js/delete/deleteQuestion.js"></script>
-    <script src="/js/filters/mailbox.js" charset="UTF-8"></script>
+    <script src="/js/filters/filter.js" charset="UTF-8"></script>
 </main>
 <script src="/js/typeQuestion.js" charset="UTF-8"></script>
 {{>footer}}

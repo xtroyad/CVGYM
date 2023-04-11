@@ -1,17 +1,20 @@
 {{>header}}
 
 <link rel="stylesheet" href="/css/center.css">
+<!-- ///////////////////////////////////////////////////////////////////////////////////---->
+<!-- MAIN PHOTO-->
 <section class="section-1">
     <img src="/img/center/fondo.jpg" alt="">
 </section>
-
+<!-- ///////////////////////////////////////////////////////////////////////////////////-->
+<!--GYM INFORMATION-->
 <div class="main">
     <h1 class="title">SI TIENES DUDAS, LLÁMANOS O ENVIANOS UN CORREO</h1>
-    <section class="section-2" >
-        <!-- ///////////////////////////////////////////////////////////////////////////////////-->
+    <section class="section-2">
+        <!--INFORMATION BOX-->
         <div class="info" style="border-radius: 10px">
             <h1>INFORMACIÓN</h1>
-            <div class="text" >
+            <div class="text">
                 <p>Dirección:</p>
                 <p class="ubication">
                     {{gym.address}}, {{gym.number}}, {{gym.city}}({{gym.ccaa}}), {{gym.zip}} </p>
@@ -19,27 +22,22 @@
                 <p>{{gym.phoneNumber}}</p>
             </div>
         </div>
-        <!-- ///////////////////////////////////////////////////////////////////////////////////-->
+        <!--TIMETABLE-->
         <div class="left-section" style="border-radius: 10px">
             <h1>HORARIO</h1>
             <div class="text">
                 <img id="table" src="/img/center/timetable.png" alt="IMAGE">
             </div>
         </div>
-        <!-- ///////////////////////////////////////////////////////////////////////////////////-->
+        <!---MAP WITH GOOGLE API-->
         <div class="right-section" style="border-radius: 10px">
-
             <h1>UBICACIÓN</h1>
-
             <div id="map" style="border-radius: 10px"></div>
         </div>
-        <!-- ///////////////////////////////////////////////////////////////////////////////////-->
     </section>
-
 </div>
-
-
-
+<!-- ///////////////////////////////////////////////////////////////////////////////////-->
+<!--ALL COURSES-->
 <section class="section-3">
 
     <h1 class="courseTitle">NUESTRAS CLASES</h1>
@@ -47,40 +45,30 @@
     <ul id="list">
         {{#courses}}
         <li class="nameCourse">
-
             <div class="ele">
-
                 <div class="CourseImagen">
                     <img src="/img/center/zumba.jpg" alt="Imagen">
                 </div>
-
-
                 <div class="course">
-
                     <div class="buttonAndTittle">
                         <h2>{{name}}</h2>
                         <div class="buttons">
-
                             <a href="#" class="btn btn-danger" data-id="{{id}}">Eliminar</a>
-
                         </div>
                     </div>
-
                     <p>Intensidad: Nivel {{intensity}}</p>
                     <p>Descripción: {{description}} </p>
-
                 </div>
-
             </div>
         </li>
         {{/courses}}
     </ul>
 </section>
-
+<!-- ///////////////////////////////////////////////////////////////////////////////////-->
 
 <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPFQiBLzTqRwHBGJJrrxb6oI1tUwRirD0&callback=initMap&v=weekly"
-        async></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPFQiBLzTqRwHBGJJrrxb6oI1tUwRirD0&callback=initMap&v=weekly"
+    async></script>
 <script src="/js/delete/deleteClass.js"></script>
 <script src="/js/map.js"></script>
 

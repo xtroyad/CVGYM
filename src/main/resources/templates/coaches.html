@@ -2,26 +2,26 @@
 <main class="d-flex flex-column min-vh-100">
     <link rel="stylesheet" href="/css/coaches.css">
     <div class="filtersContainer">
-
-
+        <!--///////////////////////////////////////////////////////-->
+        <!--FILTERS BY GYM-->
         <div class="filters">
             <h3>Filtros</h3>
 
             <label>Gimnasio:</label>
             <select id="filter" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                 <option value="todos">Todos</option>
-                <!--///////////////////////////////////////////////////////-->
+
                 {{#gym}}
                 <option value="{{id}}">ID: {{id}}. {{city}} ({{ccaa}})</option>
                 {{/gym}}
-                <!--///////////////////////////////////////////////////////-->
+
             </select>
 
         </div>
 
-
+        <!--///////////////////////////////////////////////////////-->
+        <!--ALL COACHES-->
         <div class="coaches">
-
 
             <h2 class="coach">ENTRENADORES</h2>
             <ul id="list">
@@ -48,14 +48,13 @@
                     </div>
                 </li>
 
-
                 {{/coaches}}
             </ul>
         </div>
     </div>
 
-
+    <!--JS FOR DELETING, FILTERING-->
     <script src="/js/delete/deleteCoach.js"></script>
-    <script src="/js/filters/coaches.js"></script>
+    <script src="/js/filters/filter.js"></script>
 </main>
 {{>footer}}

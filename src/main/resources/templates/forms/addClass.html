@@ -9,28 +9,28 @@
 
         <div class="form">
 
-                <h2>Añadir clase a un gimnasio</h2>
-                <label>Gimnasio:</label>
+            <h2>Añadir clase a un gimnasio</h2>
+            <label>Gimnasio:</label>
 
-                <select id="mySelectGym" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    {{#gym}}
-                    <option class="{{id}}" value="{{id}}">{{city}} ({{ccaa}}) | {{address}}, {{number}}, {{zip}}</option>
-                    {{/gym}}
-                </select>
+            <select id="mySelectGym" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                {{#gym}}
+                <option class="{{id}}" value="{{id}}">{{city}} ({{ccaa}}) | {{address}}, {{number}}, {{zip}}</option>
+                {{/gym}}
+            </select>
 
-                <label>Clase:</label>
+            <label>Clase:</label>
 
-                <select id="mySelectCourse" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    <option selected>Abre para seleccionar</option>
-                    {{#course}}
-                    <option class="{{id}}" value="{{id}}">{{name}} (Intensidad: {{intensity}})</option>
-                    {{/course}}
+            <select id="mySelectCourse" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option selected>Abre para seleccionar</option>
+                {{#course}}
+                <option class="{{id}}" value="{{id}}">{{name}} (Intensidad: {{intensity}})</option>
+                {{/course}}
 
-                </select>
-                <br><br>
+            </select>
+            <br><br>
 
 
-                <input type="submit" class="btn btn-light" value="Confirmar">
+            <input type="submit" class="btn btn-light" value="Confirmar">
 
 
 
@@ -39,6 +39,6 @@
     </div>
 
     <script src="/js/post/postClass.js"></script>
-<!--    <script src="prueba.js"></script>-->
+    <!--    <script src="prueba.js"></script>-->
 </main>
 {{>footer}}

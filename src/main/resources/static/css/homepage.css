@@ -1,61 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
-html, body{
+
+html,
+body {
     height: 100%;
 }
+
 body {
     margin: 0;
     padding: 0;
+
     background-size: cover;
     overflow-x: hidden;
-    /*display: flex;*/
-    /*flex-direction: column;*/
-
 }
 
 header {
+    padding: 0;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0;
+
     background-color: #212529;
 }
 
 
-
 nav {
+    width: 100%;
+
+    display: flex;
+
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    display: flex;
 }
 
 .logo {
     height: 100%;
+
     padding: 10px;
 }
 
 .logo img {
-
     height: 70px;
-
 }
 
 
 nav .sections {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
     width: 100%;
+
     margin: 0 60px 0 60px;
     padding: 0;
 
+    display: flex;
+    justify-content: space-between;
+
+    list-style: none;
 }
-
-
 
 nav li {
     margin: 0 20px;
+
     display: flex;
     align-items: center;
 }
@@ -63,28 +67,29 @@ nav li {
 nav a {
     padding: 10px;
 
-    color: white;
-    text-decoration: none;
     font-size: 20px;
+
+    color: white;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
-
     transition: color 0.3s ease;
+
+    text-decoration: none;
 }
 
 .sections li a:hover {
     color: #FF7200;
 }
 
-.checkbtn{
+.checkbtn {
     font-size: 1.5em;
-    float:right;
+    float: right;
     line-height: 1em;
     cursor: pointer;
     display: none;
 }
 
-#check{
+#check {
     display: none;
 }
 
@@ -98,15 +103,11 @@ nav a {
 
 /* Estilos para pantalla pequeña */
 @media screen and (max-width: 700px) {
-    .checkbtn{
+    .checkbtn {
         display: block;
     }
-    /*header {
-        flex-direction: column;
-        align-items: flex-start;
-    }*/
 
-    body{
+    body {
         overflow-x: hidden;
     }
 
@@ -135,12 +136,12 @@ nav a {
         width: 100%;
     }
 
-    nav ul li a{
+    nav ul li a {
         font-size: 20px;
         height: 5em;
     }
 
-    #check:checked ~ ul{
+    #check:checked~ul {
         left: 0;
     }
 }
@@ -148,50 +149,47 @@ nav a {
 /* ------------------------------------------------------------------------- */
 .highlights-title {
     font-size: 50px;
+
     display: flex;
     justify-content: center;
-
-
 }
 
 .highlights-title p {
     margin: 20px;
+
     font-family: 'Montserrat', sans-serif;
 
 }
-.highlights{
+
+.highlights {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .highlights div {
-
-    display: inline-block;
-
     margin: 0 10px 0 10px;
     padding: 0;
 
-    /*filter: blur(0);
-    transition: filter 0.2s ease-in-out;*/
-
+    display: inline-block;
 }
 
 .highlights div img {
     height: 500px;
-    /* Ponemos un sombreado a las imagenes */
+
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    /*Para aplicar un desenfoque*/
 }
 
 .highlights div :hover {
     filter: blur(5px);
 }
 
-.final-text{
+.final-text {
+    margin: 30px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 30px;
 }
 
 .text {
@@ -201,36 +199,37 @@ nav a {
 
 /* ------------------------------------------------------------------------- */
 .social-networks {
+    width: 100%;
+
+    padding: 50px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-
-    width: 100%;
-    padding: 50px;
-
 }
 
-.networks{
+.networks {
+    width: 70%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 70%;
 }
+
 .networks div {
     height: 100%;
+
     display: inline-block;
 }
 
 .networks div img {
-    display: inline-block;
     height: 50px;
-    transition: transform 0.2s ease-in-out;
 
+    display: inline-block;
+
+    transition: transform 0.2s ease-in-out;
 }
 
 .networks div img:hover {
-
     transform: scale(1.1);
-
-
 }

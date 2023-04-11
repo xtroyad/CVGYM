@@ -1,57 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 
-/* Set the default margin and padding to 0 for the whole page */
 body {
-
     background-color: #323030 !important;
 }
 
 p,
-h1, h2 {
+h1,
+h2 {
     font-family: 'Montserrat', sans-serif;
     overflow: hidden;
+}
 
+h1 {
+    margin: 10px;
+}
 
+p .course,
+.info p {
+    margin: 20px 20px 0 30px !important;
 }
 
 .text,
 .timetable,
-map{
+map {
     overflow: hidden;
 }
 
-/* Define the style for the first section */
+/*SECTION 1. MAIN PHOTO*/
 .section-1 {
-    /* Set the height to 30% of the viewport height and the width to 100% */
     height: 50vh;
     width: 100%;
-    /* Set the background color to light gray */
+
     background-color: #ccc;
-    /* Make the section a flex container with center alignment */
 }
 
-/* Define the style for the image in the first section */
 .section-1 img {
-    /* Set the height and width to 100% of the container */
     height: 100%;
     width: 100%;
-    /* Set the object-fit property to cover to clip the image */
+
     object-fit: cover;
 }
 
+/*SECTION 2. GYM INFORMATION*/
 .main {
     width: 100%;
-    /* justify-content: space-between;
-    align-items: center; */
 }
 
+.title {
+    margin-top: 30px;
 
-/* Define the style for the second section */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+}
+
 .section-2 {
-    /* Make the section a flex container with row direction */
     height: 100%;
-    /* Set the width to 100% and the height to 50% of the viewport height */
     width: 100%;
 
     display: flex;
@@ -60,169 +67,130 @@ map{
 
 
 .info {
-
-    display: flex;
-
-    flex-direction: column;
-
-
     height: 40vh;
     width: 30%;
 
     margin: 30px;
+
+    display: flex;
+    flex-direction: column;
+
     background-color: orange;
 }
 
-
 .text {
-    background-color: white;
     height: 100%;
     width: 100%;
+
     border-radius: 10px;
+    background-color: white;
 }
 
-/* Define the style for the left section in the second section */
 .left-section {
+    width: 30%;
+    height: 40vh;
+
+    margin: 30px;
 
     display: flex;
     flex-direction: column;
 
-    width: 30%;
-    height: 40vh;
-    margin: 30px;
-    /* Set the background color to medium gray */
     background-color: orange;
     float: left;
 }
 
 #table {
-
     height: 100%;
 }
 
-.timetable {
-    background-color: orange;
-    height: 100%;
-
-}
-
-
-/* Define the style for the right section in the second section */
 .right-section {
-    /* Set the width to 40% of the available space and the height to 100% */
     height: 40vh;
     width: 30%;
+
     margin: 30px;
-    /* Set the background color to light gray */
+
+    display: flex;
+    flex-direction: column;
 
     float: right;
     background-color: orange;
-
-
-    display: flex;
-    flex-direction: column;
-}
-
-/* Define the style for the third section */
-.section-3 {
-    display: flex;
-    flex-direction: column;
-    /* Colocar los elementos uno debajo del otro */
-    justify-content: center;
-    /* Centrar verticalmente */
-    align-items: center;
-    /* Centrar horizontalmente */
-    width: 100%;
-
-
-}
-
-/* Define the style for the images in the third section */
-.section-3 img {
-    /* Set the width to 30% of the available space */
-    width: 30%;
-
-}
-
-
-.title {
-    margin-top: 30px;
-    color: white;
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
 }
 
 #map {
-
     height: 100%;
 }
 
-h1{
-    margin: 10px;
-}
+/*ALL COURSES*/
+.section-3 {
+    width: 100%;
 
-p .course, .info p {
-    margin: 20px 20px 0 30px !important;
-}
-
-
-/* ///////////////////////////////////////////////////////////////////////////////////////// */
-
-.courseTitle{
-    color: white;
-}
-li{
-    list-style: none;
-    width: 100% ;
-}
-
-ul{
-    width: 100% ;
-}
-
-.course h2,p .info, .course p{
-    color: black;
-    margin: 20px;
-
-
-}
-
-.nameCourse{
     display: flex;
     flex-direction: column;
-    /* Colocar los elementos uno debajo del otro */
     justify-content: center;
-    /* Centrar verticalmente */
     align-items: center;
 }
-.ele {
-    background-color: white;
-    border-radius: 10px;
+
+.section-3 img {
+    width: 30%;
+}
+
+.courseTitle {
+    color: white;
+}
+
+ul {
+    width: 100%;
+}
+
+li {
+    width: 100%;
+    list-style: none;
+}
+
+.nameCourse {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.course h2,
+p .info,
+.course p {
     margin: 20px;
 
+    color: black;
+}
+
+.ele {
     width: 65%;
     height: 250px;
+
+    margin: 20px;
+
     overflow: hidden;
     display: flex;
 
+    background-color: white;
+    border-radius: 10px;
 }
 
-.CourseImagen{
-    flex-shrink: 0;
+.CourseImagen {
     width: 25%;
-    overflow: hidden;
 
+    flex-shrink: 0;
+
+    overflow: hidden;
 }
-.CourseImagen img{
-    object-fit: cover;
+
+.CourseImagen img {
     width: 100%;
     height: 100%;
+
+    object-fit: cover;
 }
 
-
-.course{
+.course {
     flex: 1;
     padding: 20px;
 }
@@ -236,11 +204,11 @@ ul{
 }
 
 .buttons {
-    flex-grow: 0;
     display: flex;
     align-items: center;
+    flex-grow: 0;
 }
 
-.buttons a{
+.buttons a {
     margin: 5px;
 }
