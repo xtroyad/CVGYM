@@ -12,7 +12,7 @@ public class CustomErrorController implements ErrorController {
 
     @GetMapping("/error")
     public String handleError(HttpServletRequest request, Model model) {
-        // Obtener el código de estado HTTP y el mensaje del error
+        // Get HTTP status code and error message
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         model.addAttribute("status", status);
 
@@ -24,7 +24,7 @@ public class CustomErrorController implements ErrorController {
             model.addAttribute("message", "Error desconocido");
         }
 
-        // Devolver la plantilla genérica para los errores
+        // Return the generic template for errorss
         return "error/error";
     }
 

@@ -140,9 +140,7 @@ public class GymWebController {
         Optional<Gym> op = gymService.findById(gymId);
 
         if (op.isPresent()) {
-
             model.addAttribute("gym", op.get());
-
             model.addAttribute("courses", hasACourseService.getCourses(gymId).get());
             return "center";
         } else {

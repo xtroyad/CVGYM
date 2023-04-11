@@ -21,6 +21,12 @@ public class HasACourseService {
     private Map<Long, List<Gym>> courseGymsMap = new ConcurrentHashMap<>();
 
 
+    /***
+     * Method that creates the relationship between a gym and the course that is taught in it
+     * @param gym
+     * @param course
+     * @return HasACourse object
+     */
     public HasACourse createCourseInGym(Gym gym, Course course) {
 
         List<Course> courseList;
@@ -47,6 +53,11 @@ public class HasACourseService {
 
     }
 
+    /***
+     * Method that returns all the courses that are taught in a specific gym.
+     * @param gymId
+     * @return list of courses
+     */
     public Optional<List<Course>> getCourses(Long gymId) {
 
         if (containsGymKey(gymId)) {
@@ -57,6 +68,11 @@ public class HasACourseService {
         }
     }
 
+    /***
+     * Method that returns all the gyms where it is taught in a particular course.
+     * @param courseId
+     * @return
+     */
     public Optional<List<Gym>> getGyms(Long courseId) {
         if (containsCourseKey(courseId)) {
             return Optional.of(courseGymsMap.get(courseId));
@@ -65,15 +81,28 @@ public class HasACourseService {
         }
     }
 
-
+    /***
+     * Method that returns true if this map maps one gym or more keys to the specified value
+     * @param id
+     * @return a boolean value equal to true if there is a trainer with that id
+     */
     public boolean containsGymKey(Long id) {
         return gymCoursesMap.containsKey(id);
     }
 
+    /***
+     * Method that returns true if this map maps one course or more keys to the specified value
+     * @param id
+     * @return a boolean value equal to true if there is a trainer with that id
+     */
     public boolean containsCourseKey(Long id) {
         return courseGymsMap.containsKey(id);
     }
 
+    /***
+     * Method that deletes a gym and also deletes its occurrences in the list of gyms of a specific course.
+     * @param gymId
+     */
     public void deleteGym(Long gymId) {
         if (containsGymKey(gymId)) {
             gymCoursesMap.remove(gymId);
@@ -94,6 +123,10 @@ public class HasACourseService {
         }
     }
 
+    /***
+     * Method that deletes a course and also deletes its occurrences in the course list of a specific gym
+     * @param courseId
+     */
     public void deleteCourse(Long courseId) {
         if (containsCourseKey(courseId)) {
             courseGymsMap.remove(courseId);
@@ -112,6 +145,11 @@ public class HasACourseService {
         }
     }
 
+    /***
+     * Method that deletes a course taught in a specific gym
+     * @param gymId
+     * @param courseId
+     */
     public void deleteCourseFromGym(Long gymId, Long courseId) {
         if (containsCourseKey(courseId)) {
 
@@ -126,6 +164,11 @@ public class HasACourseService {
         }
     }
 
+    /***
+     * Method that updates the information of a course and updates it in the different relationships it has with the gyms.
+     * @param courseId
+     * @param course
+     */
     public void updateInfoCourse(Long courseId, Course course) {
         if (containsCourseKey(courseId)) {
             for(Long gymId: gymCoursesMap.keySet()){
@@ -143,6 +186,11 @@ public class HasACourseService {
         }
     }
 
+    /***
+     * Method that updates the information of a gym and updates it in the different relationships it has with the courses.
+     * @param gymId
+     * @param gym
+     */
     public void updateInfoGym(Long gymId, Gym gym) {
         if (containsGymKey(gymId)) {
             for(Long courseId: courseGymsMap.keySet()){

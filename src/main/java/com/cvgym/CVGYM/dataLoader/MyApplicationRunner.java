@@ -10,7 +10,6 @@ import com.cvgym.CVGYM.manager.Manager;
 import com.cvgym.CVGYM.manager.ManagerService;
 import com.cvgym.CVGYM.question.Question;
 import com.cvgym.CVGYM.question.QuestionService;
-import com.cvgym.CVGYM.rest.GymRESTController;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -48,6 +47,9 @@ public class MyApplicationRunner implements ApplicationRunner {
 
     }
 
+    /***
+     * Method that preloads all the data of several gyms from a JSON file.
+     */
     public void loadGyms(){
         Gson gson = new Gson();
         try (FileReader reader = new FileReader("src/main/java/com/cvgym/CVGYM/dataLoader/gym.json")) {
@@ -63,6 +65,9 @@ public class MyApplicationRunner implements ApplicationRunner {
         }
     }
 
+    /***
+     * Method that preloads all the data of several managers from a JSON file.
+     */
     public void loadManager(){
         Gson gson = new Gson();
         try (FileReader reader = new FileReader("src/main/java/com/cvgym/CVGYM/dataLoader/manager.json")) {
@@ -79,6 +84,10 @@ public class MyApplicationRunner implements ApplicationRunner {
         }
     }
 
+
+    /***
+     * Method that preloads all the data of several questions from a JSON file.
+     */
     public void loadQuestion(){
         Gson gson = new Gson();
         try (FileReader reader = new FileReader("src/main/java/com/cvgym/CVGYM/dataLoader/question.json")) {
@@ -94,6 +103,9 @@ public class MyApplicationRunner implements ApplicationRunner {
     }
 
 
+    /***
+     * Method that preloads all the data of several courses from a JSON file.
+     */
     public void loadCourses(){
         Gson gson = new Gson();
         try (FileReader reader = new FileReader("src/main/java/com/cvgym/CVGYM/dataLoader/course.json")) {
@@ -109,6 +121,9 @@ public class MyApplicationRunner implements ApplicationRunner {
         }
     }
 
+    /***
+     * Method that preloads all the data of several coaches from a JSON file.
+     */
     public void loadCoach(){
         Gson gson = new Gson();
         try (FileReader reader = new FileReader("src/main/java/com/cvgym/CVGYM/dataLoader/coach.json")) {
@@ -132,6 +147,9 @@ public class MyApplicationRunner implements ApplicationRunner {
         }
     }
 
+    /***
+     * Method that assigns a course (randomly) to a gym.
+     */
     public void loadCourseTogym(){
 
         int ncourses = courseService.getAll().size();
