@@ -31,7 +31,7 @@ public class Gym {
     private String phoneNumber;
     //-----------------------------------//
     @JsonIgnore
-    @OneToOne(mappedBy="gym")
+    @OneToOne(cascade=CascadeType.ALL)
     private Manager manager;
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="gym")

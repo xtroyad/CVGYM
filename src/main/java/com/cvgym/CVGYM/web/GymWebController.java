@@ -171,7 +171,13 @@ public class GymWebController {
         Manager manager = new Manager(name, lastName);
         gym.setManager(manager);
         managerRepository.save(manager);
-        gymRepository.save(gym);
+        Gym g = gymRepository.save(gym);
+
+        manager.setGym(g);
+        managerRepository.save(manager);
+
+
+
         return "redirect:/centers/";
     }
 

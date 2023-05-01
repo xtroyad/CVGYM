@@ -18,7 +18,7 @@ public class Manager {
     private String name;
     private String lastName;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(mappedBy="manager")
     private Gym gym;
     public Manager() {}
     public Manager(String n, String ln, Long i){
