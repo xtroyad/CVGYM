@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+
 
 @Entity
 public class Manager {
@@ -20,7 +20,7 @@ public class Manager {
 
     @OneToOne(cascade=CascadeType.ALL)
     private Gym gym;
-
+    public Manager() {}
     public Manager(String n, String ln, Long i){
         name= n;
         id=i;

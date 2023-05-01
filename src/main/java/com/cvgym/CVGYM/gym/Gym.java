@@ -37,8 +37,8 @@ public class Gym {
     @OneToMany(cascade=CascadeType.ALL, mappedBy="gym")
     private List<Coach> coaches = new ArrayList<>();
 
-    @ManyToMany(mappedBy="gym")
-    private List<Course> courses;
+    @ManyToMany(mappedBy="gyms")
+    private List<Course> courses = new ArrayList<>();
 
 
 
