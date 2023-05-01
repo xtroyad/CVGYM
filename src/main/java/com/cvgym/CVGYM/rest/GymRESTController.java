@@ -55,11 +55,16 @@ public class GymRESTController {
         }
     }
 
-    @PostMapping("/gym/")
+    @PostMapping("/gym")
     @ResponseStatus(HttpStatus.CREATED)
-    public Gym createGym(@RequestBody Gym gym) {
-        gymRepository.save(gym);
-        return gym;
+    public Gym createGym(@RequestBody Gym gym, @RequestParam("name") String name, @RequestParam("lastName") String lastName) {
+        Manager manager = new Manager(name, lastName);
+        gym.setManager(manager);
+        managerRepository.save(manager);
+        Gym g = gymRepository.save(gym);
+        manager.setGym(g);
+        managerRepository.save(manager);
+        return g;
     }
 
     @DeleteMapping("/gym")
@@ -106,19 +111,32 @@ public class GymRESTController {
         }
     }
 
-    @PostMapping(value = "/gym-courses")
+    @PostMapping(value = "/gym-courses") //Todo: va chingón
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Course> addCourse(@RequestParam Long courseId, @RequestParam Long gymId) {
+
+        System.out.println(courseId);
+        System.out.println(gymId);
+
+
         //Comprobamos que existe el curso
         Optional<Course> opCourse = courseRepository.findById(courseId);
         if (opCourse.isPresent()) {
             //Comprobamos que existe el gimnasio
+
             Course course = opCourse.get();
+
             Optional<Gym> op = gymRepository.findById(gymId);
+
             if (op.isPresent()) {
+
                 Gym gym = op.get();
+
                 gym.getCourses().add(course);
+
                 gymRepository.save(gym);
+
+
                 return new ResponseEntity<>(opCourse.get(), HttpStatus.OK);
             } else {
                 // If gym does not exist, return status 404 (Not Found)
@@ -178,6 +196,10 @@ public class GymRESTController {
         // Delete course by id
         Optional<Course> op = courseRepository.findById(courseId);
         if (op.isPresent()) {
+            Course course = op.get();
+            for (Gym gym : course.getGyms()) {
+                gym.getCourses().remove(course);
+            }
             courseRepository.delete(op.get());
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
@@ -303,7 +325,8 @@ public class GymRESTController {
         }
     }
 
-    @PostMapping(value = "/manager")
+    //Se crea un manager cuando se crea un nuevo gimnasio
+    /*@PostMapping(value = "/manager")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity <Manager> createManager(@RequestParam Long gymId,@RequestBody Manager manager) {
         // Find gym by id
@@ -318,9 +341,10 @@ public class GymRESTController {
             // If gym does not exist, return status 404 (Not Found)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
+    }*/
 
-    @DeleteMapping("/manager")
+    //Se elimina un manager cuando se elimina el gimnasio con el que está relacionado (borrado en cascada)
+    /*@DeleteMapping("/manager")
     public ResponseEntity removeManagerByID(@RequestParam Long managerId){
         Optional<Manager> op = managerRepository.findById(managerId);
         // Delete manager by id
@@ -331,16 +355,16 @@ public class GymRESTController {
             // If manager does not exist, return status 404 (Not Found)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
+    }*/
 
     @PutMapping("/manager")
     public ResponseEntity<Manager> updateManagerByID(@RequestBody Manager manager, @RequestParam Long managerId){
         Optional<Manager> op = managerRepository.findById(managerId);
         System.out.println(managerId);
         if (op.isPresent()) {
-            Long gymId = managerRepository.findById(managerId).get().getGym().getId();
+            Gym gym = managerRepository.findById(managerId).get().getGym();
             manager.setId(managerId);
-            manager.getGym().setId(gymId);
+            manager.setGym(gym);
             managerRepository.save(manager);
             return new ResponseEntity<>(manager, HttpStatus.OK);
         } else {

@@ -31,18 +31,16 @@ public class Gym {
     private String phoneNumber;
     //-----------------------------------//
     @JsonIgnore
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private Manager manager;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="gym")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gym")
     private List<Coach> coaches = new ArrayList<>();
 
-    @ManyToMany(mappedBy="gyms")
+    //    @ManyToMany(mappedBy="gyms")
+//    private List<Course> courses = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Course> courses = new ArrayList<>();
-
-
-
-
 
 
 }
