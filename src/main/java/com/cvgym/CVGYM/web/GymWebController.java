@@ -1,10 +1,23 @@
 package com.cvgym.CVGYM.web;
 
+<<<<<<< HEAD
 import com.cvgym.CVGYM.HasACourseService;
 import com.cvgym.CVGYM.courseSet.Course;
 import com.cvgym.CVGYM.gym.Gym;
 import com.cvgym.CVGYM.manager.Manager;
 import com.cvgym.CVGYM.question.Question;
+=======
+import com.cvgym.CVGYM.coach.CoachRepository;
+import com.cvgym.CVGYM.courseSet.Course;
+import com.cvgym.CVGYM.courseSet.CourseRepository;
+import com.cvgym.CVGYM.gym.Gym;
+import com.cvgym.CVGYM.gym.GymRepository;
+import com.cvgym.CVGYM.manager.Manager;
+import com.cvgym.CVGYM.manager.ManagerRepository;
+import com.cvgym.CVGYM.question.Question;
+import com.cvgym.CVGYM.question.QuestionRepository;
+import jakarta.annotation.PostConstruct;
+>>>>>>> 3589d873f0bce445fb740ed516aef0eae0d229ab
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,18 +28,17 @@ import java.util.Optional;
 public class GymWebController {
 
     @Autowired
-    private GymService gymService;
+    private GymRepository gymRepository;
     @Autowired
-    private ManagerService managerService;
+    private ManagerRepository managerRepository;
     @Autowired
-    private CourseService courseService;
+    private CourseRepository courseRepository;
     @Autowired
-    private QuestionService questionService;
+    private QuestionRepository questionRepository;
+    /*@Autowired
+    private HasACourseService hasACourseService;*/
     @Autowired
-    private HasACourseService hasACourseService;
-    @Autowired
-    private CoachService coachService;
-
+    private CoachRepository coachRepository;
 
     @GetMapping("/")
     public String homepage() {
@@ -45,13 +57,13 @@ public class GymWebController {
 
     @GetMapping("/edit-Gym")
     public String editGymPage(Model model,  @RequestParam Long gymId) {
-        Optional<Gym> op=gymService.findById(gymId);
+        Optional<Gym> op=gymRepository.findById(gymId);
 
         if(op.isPresent()){
 
-            if(op.get().getManagerId()!=null && op.get().getManagerId()!=0L){
+            if(op.get().getManager().getId()!=null && op.get().getManager().getId()!=0L){
 
-                Optional<Manager> op2=managerService.findById(op.get().getManagerId());
+                Optional<Manager> op2=managerRepository.findById(op.get().getManager().getId());
                 model.addAttribute("manager",op2.get());
             }else{
                 model.addAttribute("manager",new Manager(" "," ",0l));
@@ -67,8 +79,8 @@ public class GymWebController {
     }
     @GetMapping("/coaches/")
     public String coaches(Model model) {
-        model.addAttribute("gym", gymService.getAll());
-        model.addAttribute("coaches", coachService.getAll());
+        model.addAttribute("gym", gymRepository.findAll());
+        model.addAttribute("coaches", coachRepository.findAll());
         return "coaches";
     }
 
@@ -79,31 +91,31 @@ public class GymWebController {
 
     @GetMapping("/edit-Class")
     public String edirCourse(Model model,  @RequestParam Long courseId) {
-        model.addAttribute("course", courseService.findById(courseId).get());
+        model.addAttribute("course", courseRepository.findById(courseId).get());
         return "forms/editClass";
     }
 
     @GetMapping("/add-Coach/")
     public String addCoachPage(Model model) {
-        model.addAttribute("gym", gymService.getAll());
+        model.addAttribute("gym", gymRepository.findAll());
         return "forms/addCoach";
     }
 
     @GetMapping("/add-class-to-gym/")
     public String addClassToGymPage(Model model) {
-        model.addAttribute("course", courseService.getAll());
-        model.addAttribute("gym",gymService.getAll());
+        model.addAttribute("course", courseRepository.findAll());
+        model.addAttribute("gym",gymRepository.findAll());
         return "forms/addClass";
     }
 
     @GetMapping("/mailbox/")
     public String showMailbox(Model model) {
-        model.addAttribute("questions",questionService.getAllQuestions());
+        model.addAttribute("questions",questionRepository.findAll());
         return "mailbox";
     }
     @GetMapping("/course/")
     public String showAllCourses(Model model) {
-        model.addAttribute("courses", courseService.getAll());
+        model.addAttribute("courses", courseRepository.findAll());
         return "courses";
     }
 
@@ -122,21 +134,20 @@ public class GymWebController {
 
     public String showCenters(Model model) {
 
-        model.addAttribute("ccaa", gymService.getAllCCAA());
-        model.addAttribute("gyms", gymService.getAll());
+        model.addAttribute("ccaa", gymRepository.getAllCCAA());
+        model.addAttribute("gyms", gymRepository.findAll());
 
         return "centers";
     }
 
     @GetMapping("/center")
-
     public String showCenter(Model model, @RequestParam Long gymId) {
 
-        Optional<Gym> op = gymService.findById(gymId);
+        Optional<Gym> op = gymRepository.findById(gymId);
 
         if (op.isPresent()) {
             model.addAttribute("gym", op.get());
-            model.addAttribute("courses", hasACourseService.getCourses(gymId).get());
+            model.addAttribute("courses", op.get().getCourses());
             return "center";
         } else {
             // If gym does not exist, return status 404 (Not Found)
@@ -149,17 +160,32 @@ public class GymWebController {
 
 
 
-    @PostMapping("/gym/")
+    /*@PostMapping("/gym/")
     public String newGym(Model model, Gym gym, @RequestParam("name") String name, @RequestParam("lastName") String lastName) {
         gymService.createGym(gym);
         managerService.createManager(new Manager(name, lastName), gym.getId());
+        return "redirect:/centers/";
+    }*/
+
+    @PostConstruct
+    @PostMapping("/gym/")
+    public String newGym(Model model, Gym gym, @RequestParam("name") String name, @RequestParam("lastName") String lastName){
+        //New Manager
+        Manager manager = new Manager(name, lastName);
+        gym.setManager(manager);
+        gymRepository.save(gym);
         return "redirect:/centers/";
     }
 
     @PutMapping("/gym/{gymId}")
     public String upDateGym(Gym gym, @PathVariable Long gymId, @RequestParam("name") String name, @RequestParam("lastName") String lastName) {
-        if (gymService.containsKey(gymId)) {
-            gymService.putGym(gymId, gym);
+        Optional<Gym> op = gymRepository.findById(gymId);
+        if (op.isPresent()) {
+
+            //TODO revisar con que valor viene el id del gym para que el metodo save funcione bien
+            gym.setId(gymId);
+            gymRepository.save(gym);
+            //gymService.putGym(gymId, gym);
             return "redirect:/centers/";
         } else {
             // If gym does not exist, return status 404 (Not Found)
@@ -173,26 +199,27 @@ public class GymWebController {
 
     @PostMapping("/course/")
     public String newClass(Model model, Course course) {
-        courseService.createCourse(course);
+        courseRepository.save(course);
         return "redirect:/";
     }
 
     @PostMapping("/contact/")
     public String newQuestion(Model model, Question question){
-        questionService.createQuestion(question);
+        questionRepository.save(question);
         return "redirect:/";
     }
 
     @GetMapping("/contacts/")
     public String showQuestions(Model model){
-        model.addAttribute(questionService.getAllQuestions());
+        model.addAttribute(questionRepository.findAll());
         return null;
     }
-    @PostMapping("/coach/{gymId}")
+
+    /*@PostMapping("/coach/{gymId}")
     public String showQuestions(Model model,@PathVariable Long gymId){
         model.addAttribute(questionService.getAllQuestions());
         return null;
-    }
+    }*/
 
 
 
