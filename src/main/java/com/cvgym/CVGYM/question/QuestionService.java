@@ -1,5 +1,6 @@
 package com.cvgym.CVGYM.question;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -12,6 +13,11 @@ import java.util.concurrent.atomic.AtomicLong;
 public class QuestionService {
     private Map<Long, Question> questions = new ConcurrentHashMap<>();
     private AtomicLong id = new AtomicLong();
+
+    //////////////////////////////////////////////
+    @Autowired
+    private QuestionRepository questionRepository;
+    //////////////////////////////////////////////
 
     /***
      * Method that creates a question

@@ -1,5 +1,6 @@
 package com.cvgym.CVGYM.coach;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Map;
@@ -9,6 +10,11 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class CoachService {
+    /////////////////////////////////////
+    @Autowired
+    CoachRepository coachRepository;
+    /////////////////////////////////
+
     private Map<Long, Coach> coaches = new ConcurrentHashMap<>();
     private AtomicLong id = new AtomicLong();
 

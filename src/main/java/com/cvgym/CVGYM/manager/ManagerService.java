@@ -13,6 +13,11 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class ManagerService {
+
+    /////////////////////////////////
+    @Autowired
+    private ManagerRepository managerRepository;
+    /////////////////////////////////
     @Autowired
     private GymService gymService;
     private Map<Long, Manager> managers = new ConcurrentHashMap<>();

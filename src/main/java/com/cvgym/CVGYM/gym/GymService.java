@@ -14,6 +14,12 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class GymService {
+
+
+    ////////////////////////////////////
+    @Autowired
+    private GymRepository gymRepository;
+    ////////////////////////////////////
     @Autowired
     private HasACourseService hasACourseService;
 
