@@ -1,6 +1,5 @@
 package com.cvgym.CVGYM.rest;
 
-import com.cvgym.CVGYM.HasACourseService;
 import com.cvgym.CVGYM.coach.Coach;
 import com.cvgym.CVGYM.coach.CoachRepository;
 import com.cvgym.CVGYM.courseSet.Course;
@@ -11,9 +10,7 @@ import com.cvgym.CVGYM.manager.Manager;
 import com.cvgym.CVGYM.manager.ManagerRepository;
 import com.cvgym.CVGYM.question.Question;
 import com.cvgym.CVGYM.question.QuestionRepository;
-import org.apache.catalina.manager.ManagerServlet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.couchbase.CouchbaseRepositoriesAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

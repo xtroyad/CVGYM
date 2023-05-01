@@ -1,23 +1,17 @@
 package com.cvgym.CVGYM.web;
 
-<<<<<<< HEAD
-import com.cvgym.CVGYM.HasACourseService;
+
+
 import com.cvgym.CVGYM.courseSet.Course;
 import com.cvgym.CVGYM.gym.Gym;
 import com.cvgym.CVGYM.manager.Manager;
 import com.cvgym.CVGYM.question.Question;
-=======
 import com.cvgym.CVGYM.coach.CoachRepository;
-import com.cvgym.CVGYM.courseSet.Course;
 import com.cvgym.CVGYM.courseSet.CourseRepository;
-import com.cvgym.CVGYM.gym.Gym;
 import com.cvgym.CVGYM.gym.GymRepository;
-import com.cvgym.CVGYM.manager.Manager;
 import com.cvgym.CVGYM.manager.ManagerRepository;
-import com.cvgym.CVGYM.question.Question;
 import com.cvgym.CVGYM.question.QuestionRepository;
 import jakarta.annotation.PostConstruct;
->>>>>>> 3589d873f0bce445fb740ed516aef0eae0d229ab
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,8 +29,7 @@ public class GymWebController {
     private CourseRepository courseRepository;
     @Autowired
     private QuestionRepository questionRepository;
-    /*@Autowired
-    private HasACourseService hasACourseService;*/
+
     @Autowired
     private CoachRepository coachRepository;
 
