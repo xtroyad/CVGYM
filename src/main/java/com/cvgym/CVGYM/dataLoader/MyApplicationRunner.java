@@ -1,15 +1,15 @@
 package com.cvgym.CVGYM.dataLoader;
 
 import com.cvgym.CVGYM.coach.Coach;
-import com.cvgym.CVGYM.coach.CoachService;
+import com.cvgym.CVGYM.coach.CoachRepository;
 import com.cvgym.CVGYM.courseSet.Course;
-import com.cvgym.CVGYM.courseSet.CourseService;
+import com.cvgym.CVGYM.courseSet.CourseRepository;
 import com.cvgym.CVGYM.gym.Gym;
-import com.cvgym.CVGYM.gym.GymService;
+import com.cvgym.CVGYM.gym.GymRepository;
 import com.cvgym.CVGYM.manager.Manager;
-import com.cvgym.CVGYM.manager.ManagerService;
+import com.cvgym.CVGYM.manager.ManagerRepository;
 import com.cvgym.CVGYM.question.Question;
-import com.cvgym.CVGYM.question.QuestionService;
+import com.cvgym.CVGYM.question.QuestionRepository;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -25,15 +25,15 @@ import java.util.Random;
 @Component
 public class MyApplicationRunner implements ApplicationRunner {
     @Autowired
-    private GymService gymService;
+    private GymRepository gymService;
     @Autowired
-    private CourseService courseService;
+    private CourseRepository courseService;
     @Autowired
-    private CoachService coachService;
+    private CoachRepository coachService;
     @Autowired
-    private ManagerService managerService;
+    private ManagerRepository managerService;
     @Autowired
-    private QuestionService questionService;
+    private QuestionRepository questionService;
 
 
     @Override
@@ -44,7 +44,6 @@ public class MyApplicationRunner implements ApplicationRunner {
         loadCourses();
         loadCoach();
         loadCourseTogym();
-
     }
 
     /***
@@ -58,7 +57,7 @@ public class MyApplicationRunner implements ApplicationRunner {
 
             List<Gym> listaGyms = Arrays.asList(gyms);
             for (Gym gym : listaGyms) {
-                gymService.createGym(gym);
+                gymService.save(gym);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,7 +75,7 @@ public class MyApplicationRunner implements ApplicationRunner {
             Long i = 1L;
             List<Manager> listaManager = Arrays.asList(managers);
             for (Manager manager : listaManager) {
-                managerService.createManager(manager, i);
+                managerService.save(manager);
                 i++;
             }
         } catch (IOException e) {
@@ -95,7 +94,7 @@ public class MyApplicationRunner implements ApplicationRunner {
             Question[] questions = gson.fromJson(reader, Question[].class);
             List<Question> listaQuestion = Arrays.asList(questions);
             for (Question question : listaQuestion) {
-                questionService.createQuestion(question);
+                questionService.save(question);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -114,7 +113,7 @@ public class MyApplicationRunner implements ApplicationRunner {
 
             List<Course> listCourses = Arrays.asList(courses);
             for (Course course : listCourses) {
-                courseService.createCourse(course);
+                courseService.save(course);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -131,12 +130,12 @@ public class MyApplicationRunner implements ApplicationRunner {
             Coach[] coaches = gson.fromJson(reader, Coach[].class);
 
             List<Coach> listaCoaches = Arrays.asList(coaches);
-            int ngyms =gymService.getAll().size();
+            int ngyms =gymService.findAll().size();
             Long i =1L;
 
             for (Coach coach : listaCoaches) {
 
-                coachService.createCoach(coach,  i);
+                coachService.save(coach);
                 i++;
                 if(i==ngyms+1L){
                     i=1L;
@@ -152,11 +151,12 @@ public class MyApplicationRunner implements ApplicationRunner {
      */
     public void loadCourseTogym(){
 
-        int ncourses = courseService.getAll().size();
-        for( Gym g :gymService.getAll()){
+        int ncourses = courseService.findAll().size();
+        for( Gym g :gymService.findAll()){
             Long id = new Random().nextLong(ncourses)+1;
+            g.getCourses().add(courseService.findById(id).get());
 
-            gymService.addCourse(courseService.findById(id).get(),g.getId());
+            gymService.save(g);
         }
 
     }

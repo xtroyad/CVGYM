@@ -2,16 +2,18 @@ package com.cvgym.CVGYM.rest;
 
 import com.cvgym.CVGYM.HasACourseService;
 import com.cvgym.CVGYM.coach.Coach;
-import com.cvgym.CVGYM.coach.CoachService;
+import com.cvgym.CVGYM.coach.CoachRepository;
 import com.cvgym.CVGYM.courseSet.Course;
-import com.cvgym.CVGYM.courseSet.CourseService;
+import com.cvgym.CVGYM.courseSet.CourseRepository;
 import com.cvgym.CVGYM.gym.Gym;
-import com.cvgym.CVGYM.gym.GymService;
+import com.cvgym.CVGYM.gym.GymRepository;
 import com.cvgym.CVGYM.manager.Manager;
-import com.cvgym.CVGYM.manager.ManagerService;
+import com.cvgym.CVGYM.manager.ManagerRepository;
 import com.cvgym.CVGYM.question.Question;
-import com.cvgym.CVGYM.question.QuestionService;
+import com.cvgym.CVGYM.question.QuestionRepository;
+import org.apache.catalina.manager.ManagerServlet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.couchbase.CouchbaseRepositoriesAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,30 +27,28 @@ import java.util.Optional;
 @RestController
 public class GymRESTController {
     @Autowired
-    private GymService gymService;
+    private GymRepository gymRepository;
     @Autowired
-    private CourseService courseService;
+    private CourseRepository courseRepository;
     @Autowired
-    private QuestionService questionService;
+    private QuestionRepository questionRepository;
     @Autowired
-    private ManagerService managerService;
+    private ManagerRepository managerRepository;
     @Autowired
-    private CoachService coachService;
-    @Autowired
-    private HasACourseService hasACourseService;
+    private CoachRepository coachRepository;
 
 
     //------------------------------------------------------------------------------------------------------------------
 
     @GetMapping("/gyms/")
     public Collection<Gym> getAllGyms() {
-        return gymService.getAll();
+        return gymRepository.findAll();
     }
 
     @GetMapping("/gym")
     public ResponseEntity<Gym> getGym(@RequestParam Long gymId) {
         // Find gym by id
-        Optional<Gym> op = gymService.findById(gymId);
+        Optional<Gym> op = gymRepository.findById(gymId);
         // If gym exists, return it with status 200 (OK)
         if (op.isPresent()) {
             return new ResponseEntity<>(op.get(), HttpStatus.OK);
@@ -58,26 +58,19 @@ public class GymRESTController {
         }
     }
 
-    @PostMapping( "/gym/")
+    @PostMapping("/gym/")
     @ResponseStatus(HttpStatus.CREATED)
     public Gym createGym(@RequestBody Gym gym) {
-        gymService.createGym(gym);
+        gymRepository.save(gym);
         return gym;
     }
 
     @DeleteMapping("/gym")
-    public ResponseEntity<Gym> removeElementByID(@RequestParam Long gymId){
+    public ResponseEntity<Gym> removeElementByID(@RequestParam Long gymId) {
         // Delete gym by id
-        if (gymService.containsKey(gymId)) {
-            Optional<Gym> gym = gymService.findById(gymId);
-            if(gym.get().getManagerId() != null && gym.get().getManagerId() !=0){
-                managerService.deleteManager(gym.get().getManagerId());
-            }
-
-            coachService.deleteAllCoaches(gymId);
-
-            hasACourseService.deleteGym(gymId);
-            gymService.delete(gymId);
+        Optional<Gym> gym = gymRepository.findById(gymId);
+        if (gym.isPresent()) {
+            gymRepository.delete(gym.get());
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             // If gym does not exist, return status 404 (Not Found)
@@ -86,12 +79,15 @@ public class GymRESTController {
     }
 
     @PutMapping("/gym")
-    public ResponseEntity<Gym> updateElementByID(@RequestBody Gym gym, @RequestParam Long gymId){
-        if (gymService.containsKey(gymId)) {
-            Long managerId = gymService.findById(gymId).get().getManagerId();
+    public ResponseEntity<Gym> updateElementByID2(@RequestBody Gym gym, @RequestParam Long gymId) {
+        Optional<Gym> opgym = gymRepository.findById(gymId);
+        if (opgym.isPresent()) {
+            Manager manager = opgym.get().getManager();
+
             gym.setId(gymId);
-            gym.setManagerId(managerId);
-            gymService.putGym(gymId,gym);
+            gym.setManager(manager);
+
+            gymRepository.save(gym);
             return new ResponseEntity<>(gym, HttpStatus.OK);
         } else {
             // If gym does not exist, return status 404 (Not Found)
@@ -103,10 +99,10 @@ public class GymRESTController {
     @GetMapping("/gym-courses")
     public ResponseEntity<List<Course>> getCoursesOfOurGym(@RequestParam Long gymId) {
 
-        Optional<List<Course>> op = gymService.getCourses(gymId);
+        Optional<Gym> op = gymRepository.findById(gymId);
         // If gym exists, return it with status 200 (OK)
         if (op.isPresent()) {
-            return new ResponseEntity<>(op.get(), HttpStatus.OK);
+            return new ResponseEntity<>(op.get().getCourses(), HttpStatus.OK);
         } else {
             // If gym does not exist, return status 404 (Not Found)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -117,30 +113,35 @@ public class GymRESTController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Course> addCourse(@RequestParam Long courseId, @RequestParam Long gymId) {
         //Comprobamos que existe el curso
-        Optional<Course> opCourse= courseService.findById(courseId);
-        if(opCourse.isPresent()){
+        Optional<Course> opCourse = courseRepository.findById(courseId);
+        if (opCourse.isPresent()) {
             //Comprobamos que existe el gimnasio
-            Optional<Course> op = gymService.addCourse(opCourse.get(), gymId);
+            Course course = opCourse.get();
+            Optional<Gym> op = gymRepository.findById(gymId);
             if (op.isPresent()) {
-                return new ResponseEntity<>(op.get(), HttpStatus.OK);
+                Gym gym = op.get();
+                gym.getCourses().add(course);
+                gymRepository.save(gym);
+                return new ResponseEntity<>(opCourse.get(), HttpStatus.OK);
             } else {
                 // If gym does not exist, return status 404 (Not Found)
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
-        }else{
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
     }
 
     @DeleteMapping("/gym-courses")
-    public ResponseEntity removeCourseFromGym(@RequestParam Long gymId, @RequestParam Long courseId){
+    public ResponseEntity removeCourseFromGym(@RequestParam Long gymId, @RequestParam Long courseId) {
         // Find course by id
-        Optional<Course> op = courseService.findById(courseId);
+        Optional<Course> op = courseRepository.findById(courseId);
 
         if (op.isPresent()) {
             // Delete course by id from a gym
-            hasACourseService.deleteCourseFromGym(gymId, courseId);
+            courseRepository.delete(op.get());
+
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             // If course does not exist, return status 404 (Not Found)
@@ -148,18 +149,17 @@ public class GymRESTController {
         }
     }
 
-
     //------------------------------------------------------------------------------------------------------------------
 
     @GetMapping("/courses/")
     public Collection<Course> getAllCourses() {
-        return courseService.getAll();
+        return courseRepository.findAll();
     }
 
     @GetMapping("/course")
-    public ResponseEntity<Course> getCourse(@RequestParam Long courseId)  {
+    public ResponseEntity<Course> getCourse(@RequestParam Long courseId) {
         // Find course by id
-        Optional<Course> op = courseService.findById(courseId);
+        Optional<Course> op = courseRepository.findById(courseId);
         // If course exists, return it with status 200 (OK)
         if (op.isPresent()) {
             return new ResponseEntity<>(op.get(), HttpStatus.OK);
@@ -172,15 +172,16 @@ public class GymRESTController {
     @PostMapping(value = "/course/")
     @ResponseStatus(HttpStatus.CREATED)
     public Course createCourse(@RequestBody Course course) {
-        courseService.createCourse(course);
+        courseRepository.save(course);
         return course;
     }
 
     @DeleteMapping("/course")
-    public ResponseEntity removeCourseByID(@RequestParam Long courseId){
+    public ResponseEntity removeCourseByID(@RequestParam Long courseId) {
         // Delete course by id
-        if (courseService.deleteCourse(courseId)) {
-            hasACourseService.deleteCourse(courseId);
+        Optional<Course> op = courseRepository.findById(courseId);
+        if (op.isPresent()) {
+            courseRepository.delete(op.get());
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             // If course does not exist, return status 404 (Not Found)
@@ -189,10 +190,11 @@ public class GymRESTController {
     }
 
     @PutMapping("/course")
-    public ResponseEntity<Course> updateCourseByID(@RequestBody Course course, @RequestParam Long courseId){
-        if (courseService.containsKey(courseId)) {
+    public ResponseEntity<Course> updateCourseByID(@RequestBody Course course, @RequestParam Long courseId) {
+        Optional<Course> op = courseRepository.findById(courseId);
+        if (op.isPresent()) {
             course.setId(courseId);
-            courseService.putCourse(courseId,course);
+            courseRepository.save(course);
             return new ResponseEntity<>(course, HttpStatus.OK);
         } else {
             // If gym does not exist, return status 404 (Not Found)
@@ -203,12 +205,12 @@ public class GymRESTController {
     //------------------------------------------------------------------------------------------------------------------
 
     @GetMapping("/course-gyms")
-    public ResponseEntity<Collection<Gym>> getAllGymsWithOurCourse(@RequestParam Long courseId){
+    public ResponseEntity<Collection<Gym>> getAllGymsWithOurCourse(@RequestParam Long courseId) {
 
-        Optional<List<Gym>> op = courseService.getGyms(courseId);
+        Optional<Course> op = courseRepository.findById(courseId);
         // If course exists, return it with status 200 (OK)
         if (op.isPresent()) {
-            return new ResponseEntity<>(op.get(), HttpStatus.OK);
+            return new ResponseEntity<>(op.get().getGyms(), HttpStatus.OK);
         } else {
             // If gym does not exist, return status 404 (Not Found)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -217,11 +219,14 @@ public class GymRESTController {
 
     @PostMapping("/course-gyms")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Gym> addGymWithOurCourses(@RequestBody Gym gym, @RequestParam Long courseId){
+    public ResponseEntity<Gym> addGymWithOurCourses(@RequestBody Gym gym, @RequestParam Long courseId) {
 
-        Optional<Gym> op = courseService.addGym(gym, courseId);
+        Optional<Course> op = courseRepository.findById(courseId);
         if (op.isPresent()) {
-            return new ResponseEntity<>(op.get(), HttpStatus.OK);
+            Course course = op.get();
+            course.getGyms().add(gym);
+            courseRepository.save(course);
+            return new ResponseEntity<>(gym, HttpStatus.OK);
         } else {
             // If gym does not exist, return status 404 (Not Found)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -231,14 +236,14 @@ public class GymRESTController {
     //------------------------------------------------------------------------------------------------------------------
     @GetMapping("/questions/")
     public Collection<Question> getAllQuestions() {
-        return questionService.getAllQuestions();
+        return questionRepository.findAll();
     }
 
     @GetMapping("/question")
     public ResponseEntity<Question> getQuestion(@RequestParam Long questionId) {
 
         // Find Question by id
-        Optional<Question> op = questionService.findById(questionId);
+        Optional<Question> op = questionRepository.findById(questionId);
         // If Question exists, return it with status 200 (OK)
         if (op.isPresent()) {
             return new ResponseEntity<>(op.get(), HttpStatus.OK);
@@ -247,17 +252,20 @@ public class GymRESTController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/question/")
     public Question createCourse(@RequestBody Question question) {
-        questionService.createQuestion(question);
+        questionRepository.save(question);
         return question;
     }
 
     @DeleteMapping("/question")
-    public ResponseEntity removeQuestionByID(@RequestParam Long questionId){
+    public ResponseEntity removeQuestionByID(@RequestParam Long questionId) {
+        Optional<Question> op = questionRepository.findById(questionId);
         // Delete course by id
-        if (questionService.deleteQuestion(questionId)) {
+        if (op.isPresent()) {
+            questionRepository.delete(op.get());
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             // If course does not exist, return status 404 (Not Found)
@@ -266,10 +274,11 @@ public class GymRESTController {
     }
 
     @PutMapping("/question")
-    public ResponseEntity<Question> updateQuestionByID(@RequestBody Question question, @RequestParam Long questionId){
-        if (questionService.containsKey(questionId)) {
+    public ResponseEntity<Question> updateQuestionByID(@RequestBody Question question, @RequestParam Long questionId) {
+        Optional<Question> op = questionRepository.findById(questionId);
+        if (op.isPresent()) {
             question.setId(questionId);
-            questionService.putQuestion(questionId,question);
+            questionRepository.save(question);
             return new ResponseEntity<>(question, HttpStatus.OK);
         } else {
             // If gym does not exist, return status 404 (Not Found)
@@ -278,15 +287,16 @@ public class GymRESTController {
     }
 
     //------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
     @GetMapping("/managers/")
     public Collection<Manager> getAllManager() {
-        return managerService.getAll();
+        return managerRepository.findAll();
     }
     @GetMapping("/manager")
     public ResponseEntity<Manager> getManager(@RequestParam Long managerId) {
 
         // Find Manager by id
-        Optional<Manager> op = managerService.findById(managerId);
+        Optional<Manager> op = managerRepository.findById(managerId);
         // If Manager exists, return it with status 200 (OK)
         if (op.isPresent()) {
             return new ResponseEntity<>(op.get(), HttpStatus.OK);
@@ -300,10 +310,12 @@ public class GymRESTController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity <Manager> createManager(@RequestParam Long gymId,@RequestBody Manager manager) {
         // Find gym by id
-        Optional<Gym> op = gymService.findById(gymId);
+        Optional<Gym> op = gymRepository.findById(gymId);
         // If gym exists add manager, return it with status 200 (OK)
         if (op.isPresent()) {
-            managerService.createManager(manager,gymId);
+            Gym gym = op.get();
+            manager.setGym(gym);
+            managerRepository.save(manager);
             return new ResponseEntity<>(manager, HttpStatus.OK);
         } else {
             // If gym does not exist, return status 404 (Not Found)
@@ -313,8 +325,10 @@ public class GymRESTController {
 
     @DeleteMapping("/manager")
     public ResponseEntity removeManagerByID(@RequestParam Long managerId){
+        Optional<Manager> op = managerRepository.findById(managerId);
         // Delete manager by id
-        if (managerService.deleteManager(managerId)) {
+        if (op.isPresent()) {
+            managerRepository.deleteById(managerId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             // If manager does not exist, return status 404 (Not Found)
@@ -324,13 +338,13 @@ public class GymRESTController {
 
     @PutMapping("/manager")
     public ResponseEntity<Manager> updateManagerByID(@RequestBody Manager manager, @RequestParam Long managerId){
-
+        Optional<Manager> op = managerRepository.findById(managerId);
         System.out.println(managerId);
-        if (managerService.containsKey(managerId)) {
-            Long gymId = managerService.findById(managerId).get().getGymId();
+        if (op.isPresent()) {
+            Long gymId = managerRepository.findById(managerId).get().getGym().getId();
             manager.setId(managerId);
-            manager.setGymId(gymId);
-            managerService.putManager(managerId,manager);
+            manager.getGym().setId(gymId);
+            managerRepository.save(manager);
             return new ResponseEntity<>(manager, HttpStatus.OK);
         } else {
             // If gym does not exist, return status 404 (Not Found)
@@ -341,14 +355,14 @@ public class GymRESTController {
     //------------------------------------------------------------------------------------------------------------------
     @GetMapping("/coaches/")
     public Collection<Coach> getAllCoaches() {
-        return coachService.getAll();
+        return coachRepository.findAll();
     }
 
     @GetMapping("/coach")
     public ResponseEntity<Coach> getCoach(@RequestParam Long coachId) {
 
         // Find Coach by id
-        Optional<Coach> op = coachService.findById(coachId);
+        Optional<Coach> op = coachRepository.findById(coachId);
         // If Coach exists, return it with status 200 (OK)
         if (op.isPresent()) {
             return new ResponseEntity<>(op.get(), HttpStatus.OK);
@@ -361,10 +375,12 @@ public class GymRESTController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity <Coach> createCoach(@RequestParam Long gymId,@RequestBody Coach coach) {
         // Find gym by id
-        Optional<Gym> op = gymService.findById(gymId);
+        Optional<Gym> op = gymRepository.findById(gymId);
         // If gym exists add coach, return it with status 200 (OK)
         if (op.isPresent()) {
-            coachService.createCoach(coach,gymId);
+            Gym gym = op.get();
+            coach.setGym(gym);
+            coachRepository.save(coach);
             return new ResponseEntity<>(coach, HttpStatus.OK);
         } else {
             // If gym does not exist, return status 404 (Not Found)
@@ -374,8 +390,10 @@ public class GymRESTController {
 
     @DeleteMapping("/coach")
     public ResponseEntity removeCoachByID(@RequestParam Long coachId){
+        Optional<Coach> op = coachRepository.findById(coachId);
         // Delete coach by id
-        if (coachService.deleteCoach(coachId)) {
+        if (op.isPresent()) {
+            coachRepository.deleteById(coachId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             // If course does not exist, return status 404 (Not Found)
@@ -385,9 +403,10 @@ public class GymRESTController {
 
     @PutMapping("/coach")
     public ResponseEntity<Coach> updateCoachByID(@RequestBody Coach coach, @RequestParam Long coachId){
-        if (coachService.containsKey(coachId)) {
+        Optional<Coach> op = coachRepository.findById(coachId);
+        if (op.isPresent()) {
             coach.setId(coachId);
-            coachService.putCoach(coachId,coach);
+            coachRepository.save(coach);
             return new ResponseEntity<>(coach, HttpStatus.OK);
         } else {
             // If gym does not exist, return status 404 (Not Found)

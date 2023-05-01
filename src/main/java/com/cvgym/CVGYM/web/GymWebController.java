@@ -1,15 +1,10 @@
 package com.cvgym.CVGYM.web;
 
 import com.cvgym.CVGYM.HasACourseService;
-import com.cvgym.CVGYM.coach.CoachService;
 import com.cvgym.CVGYM.courseSet.Course;
-import com.cvgym.CVGYM.courseSet.CourseService;
 import com.cvgym.CVGYM.gym.Gym;
-import com.cvgym.CVGYM.gym.GymService;
 import com.cvgym.CVGYM.manager.Manager;
-import com.cvgym.CVGYM.manager.ManagerService;
 import com.cvgym.CVGYM.question.Question;
-import com.cvgym.CVGYM.question.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
