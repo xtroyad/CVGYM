@@ -1,4 +1,13 @@
 {{>header}}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!--<link rel="stylesheet" href="css/site.css">-->
+<link rel="stylesheet" href="/css/richtext.min.css">
+<script type="text/javascript" src="/js/jquery.richtext.js"></script>
+
+
 <main class="d-flex flex-column min-vh-100">
   <link rel="stylesheet" href="/css/form.css">
   <div>
@@ -26,6 +35,14 @@
           <textarea class="form-control" id="description" name="description" rows="4" placeholder="Descripción aquí..."
             required></textarea>
         </div>
+
+
+        <script>
+          $(document).ready(function() {
+            $('#description').richText();
+          });
+        </script>
+
         <br><br>
 
         <input type="submit" class="btn btn-light" value="Confirmar" required>

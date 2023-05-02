@@ -36,6 +36,14 @@ p {
     margin-bottom: 0 !important;
 }
 
+.descrip{
+    margin: 15px;
+    margin-top: 0;
+    margin-bottom: 0 !important;
+    color:white;
+
+}
+
 ul {
     padding: 0 0 0 0 !important;
 }
