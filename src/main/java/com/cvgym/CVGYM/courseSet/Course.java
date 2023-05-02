@@ -1,6 +1,7 @@
 package com.cvgym.CVGYM.courseSet;
 
 import com.cvgym.CVGYM.gym.Gym;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +23,7 @@ public class Course {
     private int intensity;
     private String description;
 
-    //    @ManyToMany
-//    private List<Gym> gyms;
-    @ManyToMany(mappedBy="courses", cascade = CascadeType.ALL)
-    private List<Gym> gyms = new ArrayList<>();
+    @JsonBackReference
+    @ManyToMany(mappedBy="courses")
+    private List<Gym> gyms;
 }

@@ -1,6 +1,7 @@
 package com.cvgym.CVGYM.coach;
 
 import com.cvgym.CVGYM.gym.Gym;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +18,7 @@ public class Coach {
     private Long id;
     private String name;
     private String lastName;
+    @JsonBackReference
     @ManyToOne
     Gym gym;
 

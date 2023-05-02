@@ -4,6 +4,7 @@ import com.cvgym.CVGYM.coach.Coach;
 import com.cvgym.CVGYM.courseSet.Course;
 import com.cvgym.CVGYM.manager.Manager;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,12 +35,14 @@ public class Gym {
     @OneToOne(cascade = CascadeType.ALL)
     private Manager manager;
 
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "gym")
     private List<Coach> coaches = new ArrayList<>();
 
     //    @ManyToMany(mappedBy="gyms")
 //    private List<Course> courses = new ArrayList<>();
-    @ManyToMany(cascade = CascadeType.ALL)
+
+    @ManyToMany
     private List<Course> courses = new ArrayList<>();
 
 

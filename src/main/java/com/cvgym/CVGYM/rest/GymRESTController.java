@@ -149,19 +149,32 @@ public class GymRESTController {
     }
 
     @DeleteMapping("/gym-courses")
-    public ResponseEntity removeCourseFromGym(@RequestParam Long gymId, @RequestParam Long courseId) {
+    public ResponseEntity removeCourseFromGym(@RequestParam Long gymId, @RequestParam Long courseId) { //todo: va chingon
         // Find course by id
         Optional<Course> op = courseRepository.findById(courseId);
+        Optional<Gym> opGym = gymRepository.findById(gymId);
+        if(opGym.isPresent()){
+            if (op.isPresent()) {
+                // Delete course by id from a gym
+                Course course = op.get();
+                Gym gym = opGym.get();
 
-        if (op.isPresent()) {
-            // Delete course by id from a gym
-            courseRepository.delete(op.get());
+                course.getGyms().remove(gym);
+                gym.getCourses().remove(course);
 
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            // If course does not exist, return status 404 (Not Found)
+                gymRepository.save(gym);
+                courseRepository.save(course);
+
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                // If course does not exist, return status 404 (Not Found)
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
+        }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -199,6 +212,7 @@ public class GymRESTController {
             Course course = op.get();
             for (Gym gym : course.getGyms()) {
                 gym.getCourses().remove(course);
+                gymRepository.save(gym);
             }
             courseRepository.delete(op.get());
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -208,8 +222,10 @@ public class GymRESTController {
         }
     }
 
+
+    @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping("/course")
-    public ResponseEntity<Course> updateCourseByID(@RequestBody Course course, @RequestParam Long courseId) {
+    public ResponseEntity<Course> updateCourseByID(@RequestBody Course course,@RequestParam("courseId") Long courseId) {
         Optional<Course> op = courseRepository.findById(courseId);
         if (op.isPresent()) {
             course.setId(courseId);
@@ -392,6 +408,7 @@ public class GymRESTController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @PostMapping(value = "/coach")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity <Coach> createCoach(@RequestParam Long gymId,@RequestBody Coach coach) {
@@ -401,6 +418,7 @@ public class GymRESTController {
         if (op.isPresent()) {
             Gym gym = op.get();
             coach.setGym(gym);
+            //gym.setCoaches(gym.getCoaches().add(coach));
             coachRepository.save(coach);
             return new ResponseEntity<>(coach, HttpStatus.OK);
         } else {
