@@ -186,7 +186,7 @@ public class GymWebController {
         Optional<Gym> op = gymRepository.findById(gymId);
         if (op.isPresent()) {
 
-            //TODO revisar con que valor viene el id del gym para que el metodo save funcione bien
+
             gym.setId(gymId);
             gymRepository.save(gym);
             //gymService.putGym(gymId, gym);
