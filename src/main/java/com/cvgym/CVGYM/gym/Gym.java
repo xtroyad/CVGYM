@@ -22,7 +22,7 @@ import java.util.List;
 
 public class Gym {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String city;
     private String ccaa;
